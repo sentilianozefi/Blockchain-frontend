@@ -1,0 +1,48 @@
+.hello-name {
+    font-size: 40px;
+    font-family: 'Didact Gothic', sans-serif;
+    padding-left: 70px;
+    margin-top: 30px;
+    align-items: center;
+}
+
+.textarea {
+    width: 700px;
+    height: 150px;
+    margin: 50px 70px;
+    box-sizing: border-box;
+    border: 2px solid rgb(109, 109, 109);
+    border-radius: 10px;
+    background-color: #ffffff;
+    font-size: 16px;
+    resize: none;
+}
+
+.add-report {
+    margin-left: 70px;
+}
+
+
+.allreports {
+    margin: 50px 70px;
+    box-sizing: border-box;
+    border: 2px solid rgb(109, 109, 109);
+    border-radius: 10px;
+    background-color: #ffffff;
+    font-size: 16px;
+    resize: none;
+}
+
+.cancelreport {
+    border: solid rgb(39, 39, 107);
+    border-radius: 14px;
+    padding: 5px 15px;
+    color: rgb(39, 39, 107);
+    box-shadow: 3px 4px 0px 0px #bcbdbe;
+}
+
+.report-body{
+    align-items: center;
+    justify-content: center;
+
+}

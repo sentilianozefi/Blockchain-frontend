@@ -1,0 +1,62 @@
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import App from "./App";
+import Login from "./Login";
+import Signup from "./Signup";
+import Recoverpassword from "./PasswordRecovery";
+import Recover from "./RecoverPage";
+//import UserForm from "./Signup";
+
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
+root.render(
+  <StrictMode>
+    <BrowserRouter>
+      <Routes>
+      <Route
+          path="respas/:token"
+          element={
+            <>
+              <Recover />
+            </>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <>
+              <App />
+            </>
+          }
+        />
+        <Route
+          path="signup"
+          element={
+            <>
+              <Signup />
+            </>
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <>
+              <Login />
+            </>
+          }
+        />
+        <Route
+          path="recover"
+          element={
+            <>
+              <Recoverpassword />
+            </>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  </StrictMode>
+);

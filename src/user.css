@@ -1,0 +1,93 @@
+.userpage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: #efeff0;
+}
+
+.edit-form {
+    text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.edit-pass {
+    margin-top: 120px;
+    margin-left: 610px;
+}
+
+.edit-profile {
+    align-items: center;
+    justify-content: center;
+    display: block;
+}
+
+.report-form {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.reports {
+    display: inline-block;
+}
+
+.reportlist {
+    list-style: none;
+    padding: 30px;
+    max-width: 250px;
+}
+
+.allreports {
+    max-width: 1100px;
+}
+
+.cancelreport {
+    margin-top: 15px;
+    ;
+}
+
+.login-signin {
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.editprofile:hover {
+    color: blue;
+}
+
+.changepass {
+    text-decoration: none;
+    color: black;
+}
+
+.changepass:hover {
+    color: blue;
+}
+
+/* .image{
+    margin-bottom: 200px;
+} */
+.edit-btns {
+    align-items: center;
+    position: fixed;
+    right: 100px;
+    display: block;
+    bottom: 20px;
+}
+
+.image {
+    margin-top: 100px;
+}
+
+.data-form {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
