@@ -11,6 +11,7 @@ export default function Signup() {
   const [username, setUsername] = useForm();
   const [password, setPassword] = useForm();
   const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+  const mailformat =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const [users, setUsers] = useState(null);
 
 
@@ -30,18 +31,19 @@ export default function Signup() {
       }),
     })
       .then((res) => {
-        if (res.status === 400) {
+        if (!res.ok) {
           alert("Existing username!");
-          throw new Error(res.status)
+          //throw new Error(res.status);
         }
-        else res.json()
+        else if (res.ok){
+          res.json();
+          alert("You have signed up successfully! Please go to the login page.");
+        }
       })
       .then((res) => {
         console.log(res);
-        
-        setUsers((prevUsers) => [...prevUsers, res]);
-        
-        
+       // setUsers((prevUsers) => [...prevUsers, res]);
+
       });
   };
 
@@ -53,9 +55,12 @@ export default function Signup() {
     else if (!strongRegex.test(password)) {
       alert("Password does not meet the conditions!");
     }
+    else if(!email.match(mailformat)){
+      alert("Invalid email address!");
+    }
     else {
       addUser();
-      alert("You have signed up successfully! Please go to the login page.");
+      
     }
   };
 
@@ -80,7 +85,7 @@ export default function Signup() {
       <div className='form-content'>
 
 
-        <form className='form'>
+        <form onSubmit={e => e.preventDefault()} className='form'>
           <h1>Sign up</h1>
           <div className='form-inputs'>
             <label className='form-label'>Name: </label>
