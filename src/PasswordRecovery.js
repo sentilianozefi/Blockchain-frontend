@@ -49,14 +49,14 @@ export default function Recoverpassword() {
             <div>
               <input class="form-control" type="text" placeholder="Username" value={username} onChange={(e) => setusername(e.target.value)} />
               <br></br> 
-            <button onClick={generateToken}>Apply</button>
+            <button onClick={generateToken} className = "login-btn-2">Apply</button>
             </div>}
 
             {apply === false && 
             <div>
               <input class="form-control" type="text" placeholder="Username" value={username} />
               <br></br>
-              <button onClick={getemail}>Get recovery link</button>
+              <button onClick={getemail} className = "login-btn-2">Get recovery link</button>
               </div>}
           </div>
 

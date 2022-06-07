@@ -34,12 +34,13 @@ export default function Signup() {
           alert("Existing username!");
           throw new Error(res.status)
         }
-        else { res.json() 
-          alert("You have signed up successfully! Please go to the login page.")}
+        else res.json()
       })
       .then((res) => {
-        console.log(res)
+        console.log(res);
+        
         setUsers((prevUsers) => [...prevUsers, res]);
+        
         
       });
   };
@@ -54,6 +55,7 @@ export default function Signup() {
     }
     else {
       addUser();
+      alert("You have signed up successfully! Please go to the login page.");
     }
   };
 

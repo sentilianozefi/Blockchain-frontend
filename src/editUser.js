@@ -8,7 +8,7 @@ export default function EditUser(props) {
     return (
         <div className="data-form">
            
-            <form>
+            <form onSubmit={e => e.preventDefault()}>
 
                 <div class="mb-3" className="form-inputs">
                     <label class="form-label" className="form-label">Name: </label>
@@ -46,7 +46,7 @@ export default function EditUser(props) {
                         readOnly
                     />
                 </div>
-                <button class="btn btn-primary" className="login-btn update-password"><a className="changepass" href="#" onClick={props.seteditpasstrue}>Update password &#8595;</a></button>
+                <button class="btn btn-primary" className="login-btn update-password" onClick={props.seteditpasstrue}>Update password &#8595;</button>
 
                 <div className="edit-btns">
                     <button className="login-btn" onClick={props.updatebtn}>Update</button>

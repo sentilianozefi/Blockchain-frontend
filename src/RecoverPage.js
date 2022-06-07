@@ -2,6 +2,9 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import {useState} from 'react';
+import "./PasswordRecovery.css";
+import "./styles.css";
+import "./Forms.css";
 export default function Recover() {
 
     const [newPassword, setnewPassword] = useState("");
@@ -36,8 +39,18 @@ export default function Recover() {
     return (
 
         <div>
+            <div className=" header">
+        <a href="/" className="home">Whistleblowing</a>
+        <div className="header-right">
+          <a className="login-btn" href="/login">Log in</a>
+          <a className="signup-btn" href="/signup">Sign up</a>
+        </div>
+      </div>
+      <div className="recover-body">
+      <div className="recover-area">
+      <div className="form-recover-password">
             <div>
-                <button onClick={() => console.log(params)}>test</button>
+                
                 <label>New password:</label>
                 <input type="password" value={newPassword} onChange={e=>setnewPassword(e.target.value)}/>
             </div>
@@ -46,7 +59,7 @@ export default function Recover() {
                 <input type="password" value={confirmpass} onChange={e=>setconfirmpass(e.target.value)}/>
             </div>
             <button onClick={reset}>Save password</button>
-
+            </div></div></div>
         </div>
     );
 }

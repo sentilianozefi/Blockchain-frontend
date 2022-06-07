@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./styles.css";
 import "./Forms.css"
 import "./user.css";
+import profileicon from './profileicon.png';
 import React, { useEffect, useState } from "react";
 import Profile from "./userProfile";
 import EditUser from "./editUser";
@@ -327,7 +328,7 @@ export default function Login() {
             setEdittrue={()=>{setEdit(true); setnewedit(true)}}
           />
           <div className="edit-form">
-            <Image getImg={"data:image/jpeg;base64," + users.base64} PostImg={imgbtn} handleFileInputChange={handleFileInputChange} />
+            <Image getImg={users.base64 ? "data:image/jpeg;base64," + users.base64 : profileicon} PostImg={imgbtn} handleFileInputChange={handleFileInputChange} />
             <div className="edit-profile">
               <EditUser
                 newname={newname}
