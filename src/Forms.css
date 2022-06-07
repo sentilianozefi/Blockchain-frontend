@@ -112,3 +112,48 @@
     border: solid 3px rgb(124, 124, 124);
     
 }
+.input-with-border{
+
+  border: 2px solid rgb(109, 109, 109);
+
+  border-radius: 10px;
+
+}
+
+
+
+.save-password {
+
+  margin-top: 20px;
+
+  align-items: center;
+
+}
+
+
+
+.button-save-pw {
+
+  align-content: center;
+
+  justify-content: center;
+
+  display: flex;
+
+}
+
+
+
+.form-inputs-recover {
+
+  width: 400px;
+
+    height: 90px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-content: center;
+
+}
