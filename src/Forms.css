@@ -93,8 +93,13 @@
     margin: 10px; 
 }
 #forgot-password a{
-    padding: 20px;
+    /* padding: 20px; */
     color: rgb(50, 156, 255);
+}
+
+#forgot-password{
+  margin-top: 20px;
+
 }
 
 #sign-up{

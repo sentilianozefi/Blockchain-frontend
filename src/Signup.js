@@ -135,7 +135,7 @@ export default function Signup() {
           <button className='signup-btn' type="submit" onClick={submit} >Sign up</button>
           <p>
             Already have an account?
-            <Link to="/login">Log in</Link>
+            <Link to="/login" className='login-link-at-signup'>Log in</Link>
           </p>
         </form>
 

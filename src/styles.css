@@ -143,3 +143,6 @@ a {
   box-shadow: 3px 4px 0px 0px #bcbdbe;
   border: solid rgb(39, 39, 107);
 }
+.login-link-at-signup {
+  color: rgb(50, 156, 255)
+}
