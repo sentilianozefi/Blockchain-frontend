@@ -17,6 +17,8 @@ export default function Login() {
   const [inputValue, setValue] = useState('');
   const [passValue, setPassValue] = useState('');
   const [newreport, setnewreport] = useState("");
+  const [reportTitle, setreportTitle] = useState("");
+  const [showtext, setshowtext] = useState(false);
   const [reports, setReports] = useState([]);
   const [edit, setEdit] = useState(false);
   const [newname, setnewname] = useState("");
@@ -97,6 +99,7 @@ export default function Login() {
       },
       body: JSON.stringify({
         username: inputValue,
+        title: reportTitle,
         report: newreport
 
       }),
@@ -242,7 +245,13 @@ export default function Login() {
     }
   }
 
+  const displaytext = (id) =>{
+    setshowtext(true);
+  }
 
+const closetext = (id) =>{
+  setshowtext(false);
+}
 
 
   return (
@@ -299,12 +308,23 @@ export default function Login() {
             <div>
               <Profile
                 username={users.name + " " + users.surname}
+                reportTitle = {reportTitle}
+                setreportTitle = {e => setreportTitle(e.target.value)}
                 newreport={newreport}
                 setnewreport={e => setnewreport(e.target.value)}
                 addReport={addReport}
               />
               <div className="allreports">
-                {reports !== null && reports.map((el) => (<div className="reports"><li key={el.username} className="reportlist" >{el.report}<br />
+                {reports !== null && reports.map((el) => (<div className="reports"><li key={el.username} className="reportlist" >
+                  {showtext === false ? 
+                  <button 
+                  onClick={()=>displaytext(el.id)}>{el.title}</button> : 
+                  <div>
+                    <button 
+                    onClick={()=>closetext(el.id)}
+                    >{el.title}</button><br></br>{el.report}
+                    </div>}
+                    <br />
                   {el.canceled === false ?
                     <button
                       onClick={() => cancelReport(el.id)}

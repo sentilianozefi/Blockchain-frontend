@@ -8,7 +8,7 @@ export default function Profile(props) {
     <div className="report-body">
 
         <h1 className="hello-name">Hello {props.username}</h1>
-      
+       <input type = "text" value = {props.reportTitle} onChange = {props.setreportTitle} placeholder = "Enter the report title"/><br></br>
         <textarea
         className="textarea"
           value={props.newreport}
