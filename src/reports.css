@@ -9,7 +9,18 @@
 .textarea {
     width: 700px;
     height: 150px;
-    margin: 50px 70px;
+    margin: 10px 70px;
+    box-sizing: border-box;
+    border: 2px solid rgb(109, 109, 109);
+    border-radius: 10px;
+    background-color: #ffffff;
+    font-size: 16px;
+    resize: none;
+}
+.title{
+    width: 700px;
+    height: 50px;
+    margin: 10px 70px;
     box-sizing: border-box;
     border: 2px solid rgb(109, 109, 109);
     border-radius: 10px;
@@ -23,7 +34,7 @@
 }
 
 
-.allreports {
+.reports {
     margin: 50px 70px;
     box-sizing: border-box;
     border: 2px solid rgb(109, 109, 109);

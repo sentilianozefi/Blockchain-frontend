@@ -125,6 +125,7 @@ export default function Login() {
     }
     else {
       createReport();
+      setreportTitle("");
       setnewreport("");
     }
   };
@@ -136,9 +137,10 @@ export default function Login() {
       headers: {
         "Content-type": "application/json; charset=UTF-8"
       }
-    }).then(response =>{
+    }).then(response => {
       response.json(),
-      getReport()}
+        getReport()
+    }
     )
 
   }
@@ -245,15 +247,6 @@ export default function Login() {
     }
   }
 
-  const displaytext = (id) =>{
-    setshowtext(true);
-  }
-
-const closetext = (id) =>{
-  setshowtext(false);
-}
-
-
   return (
     <div>
       {users === null &&
@@ -308,29 +301,24 @@ const closetext = (id) =>{
             <div>
               <Profile
                 username={users.name + " " + users.surname}
-                reportTitle = {reportTitle}
-                setreportTitle = {e => setreportTitle(e.target.value)}
+                reportTitle={reportTitle}
+                setreportTitle={e => setreportTitle(e.target.value)}
                 newreport={newreport}
                 setnewreport={e => setnewreport(e.target.value)}
                 addReport={addReport}
               />
               <div className="allreports">
-                {reports !== null && reports.map((el) => (<div className="reports"><li key={el.username} className="reportlist" >
-                  {showtext === false ? 
-                  <button 
-                  onClick={()=>displaytext(el.id)}>{el.title}</button> : 
+                {reports !== null && reports.map((el) => <div className="reports"><li key={el.username} className="reportlist">
                   <div>
-                    <button 
-                    onClick={()=>closetext(el.id)}
-                    >{el.title}</button><br></br>{el.report}
-                    </div>}
-                    <br />
+                    <h3>{el.title}</h3>{el.report}
+                  </div>
+                  <br />
                   {el.canceled === false ?
                     <button
                       onClick={() => cancelReport(el.id)}
                       className="cancelreport"
                       value={el.id}>Cancel report</button> :
-                    <button className="cancelreport" disabled>Canceled</button>}</li></div>))}
+                    <button className="cancelreport" disabled>Canceled</button>}</li></div>)}
               </div>
             </div>
             <div>
@@ -345,7 +333,7 @@ const closetext = (id) =>{
         <div>
           <Header
             logout={() => window.location.reload()}
-            setEdittrue={()=>{setEdit(true); setnewedit(true)}}
+            setEdittrue={() => { setEdit(true); setnewedit(true) }}
           />
           <div className="edit-form">
             <Image getImg={users.base64 ? "data:image/jpeg;base64," + users.base64 : profileicon} PostImg={imgbtn} handleFileInputChange={handleFileInputChange} />
