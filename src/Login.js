@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./styles.css";
-import "./Forms.css"
+import "./Forms.css";
 import "./user.css";
 import profileicon from './profileicon.png';
 import React, { useEffect, useState } from "react";
@@ -18,7 +18,6 @@ export default function Login() {
   const [passValue, setPassValue] = useState('');
   const [newreport, setnewreport] = useState("");
   const [reportTitle, setreportTitle] = useState("");
-  const [showtext, setshowtext] = useState(false);
   const [reports, setReports] = useState([]);
   const [edit, setEdit] = useState(false);
   const [newname, setnewname] = useState("");
@@ -28,10 +27,11 @@ export default function Login() {
   const [oldpassword, setoldpassword] = useState("");
   const [editeduser, setediteduser] = useState([]);
   const [editpass, seteditpass] = useState(false);
-  const [newedit, setnewedit] = useState(false);
   const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
   const [file, setfile] = useState(null);
   const [base64URL, setbase64URL] = useState("");
+  const [report2, setreport2] = useState("");
+  const [arr, setArr] = useState([]);
 
   const getBase64 = (file) => {
     return new Promise(resolve => {
@@ -62,7 +62,6 @@ export default function Login() {
   const imgbtn = () => {
     PostImg();
     setEdit(false);
-    setnewedit(false);
     alert("You have successfully uploaded your profile picture!");
     fetchData();
   }
@@ -118,6 +117,14 @@ export default function Login() {
     setReports(json)
 
   }
+
+  useEffect(() => {
+    let temp = reports
+    temp.map(el => {
+      el = { ...el, display: false }
+    })
+    setArr(temp);
+  }, [reports])
 
   const addReport = () => {
     if (newreport === "") {
@@ -203,7 +210,6 @@ export default function Login() {
       alert("Your data updated successfully!")
       seteditpass(false);
       setEdit(false);
-      setnewedit(false);
       fetchData();
 
     }
@@ -246,6 +252,36 @@ export default function Login() {
 
     }
   }
+  const editreport = (id) => {
+    fetch("http://192.168.70.108:8080/UpdateReportEssence/" + id + "/" + report2, {
+      method: 'PUT',
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    }).then(response => {
+      if (!response.ok) {
+        alert("Update time for this report has passed!");
+      }
+      else {
+        response.json();
+        getReport();
+        alert("You successfully edited your report!");
+        setreport2("");
+      }
+    }
+    )
+  }
+
+  const reportedit = (id) =>{
+    if(report2 === ""){
+      alert("You can't submit an empty report!")
+    }
+    else{
+      editreport(id);
+      fetchData();
+    }
+
+  }
 
   return (
     <div>
@@ -287,13 +323,13 @@ export default function Login() {
           </div>
         </div>}
 
-      {users !== null && newedit === false &&
+      {users !== null && edit === false &&
 
         <div>
 
           <Header
             logout={() => window.location.reload()}
-            setEdittrue={() => { setEdit(true); setnewedit(true) }}
+            setEdittrue={() => setEdit(true) }
           />
 
           <div className="userpage">
@@ -308,16 +344,23 @@ export default function Login() {
                 addReport={addReport}
               />
               <div className="allreports">
-                {reports !== null && reports.map((el) => <div className="reports"><li key={el.username} className="reportlist">
+                {arr !== null && arr.map((el) => <div className="reports"><li key={el.username} className="reportlist">
                   <div>
                     <h3>{el.title}</h3>{el.report}
                   </div>
                   <br />
                   {el.canceled === false ?
-                    <button
-                      onClick={() => cancelReport(el.id)}
-                      className="cancelreport"
-                      value={el.id}>Cancel report</button> :
+                    <div>
+                      <button onClick={() => { el.display = !el.display; fetchData() }} className="editreport">Edit</button>
+                      {el.display &&
+                        <div><textarea value={report2} onChange={(e) => setreport2(e.target.value)} />
+                          <button onClick={() =>{reportedit(el.id);el.display = !el.display}}>Submit</button></div>
+                      }
+                      <button
+                        onClick={() => cancelReport(el.id)}
+                        className="cancelreport"
+                        value={el.id}>Cancel report</button>
+                    </div> :
                     <button className="cancelreport" disabled>Canceled</button>}</li></div>)}
               </div>
             </div>
@@ -328,15 +371,18 @@ export default function Login() {
           </div>
         </div>
       }
-      {edit === true && newedit === true &&
+      {edit === true && 
 
         <div>
           <Header
             logout={() => window.location.reload()}
-            setEdittrue={() => { setEdit(true); setnewedit(true) }}
+            setEdittrue={() => setEdit(true)}
           />
           <div className="edit-form">
-            <Image getImg={users.base64 ? "data:image/jpeg;base64," + users.base64 : profileicon} PostImg={imgbtn} handleFileInputChange={handleFileInputChange} />
+            <Image
+              getImg={users.base64 ? "data:image/jpeg;base64," + users.base64 : profileicon}
+              PostImg={imgbtn}
+              handleFileInputChange={handleFileInputChange} />
             <div className="edit-profile">
               <EditUser
                 newname={newname}
@@ -346,12 +392,12 @@ export default function Login() {
                 newemail={newemail}
                 setnewemail={e => setnewemail(e.target.value)}
                 inputValue={inputValue}
-                seteditpasstrue={() => seteditpass(true)}
+                seteditpasstrue={() => seteditpass(!editpass)}
                 oldname={users.name}
                 oldsurname={users.surname}
                 oldemail={users.email}
                 updatebtn={updatebtn}
-                setEditfalseseteditpassfalse={() => { setEdit(false); seteditpass(false); setnewedit(false) }}
+                setEditfalseseteditpassfalse={() => { setEdit(false); seteditpass(false) }}
               />
               {editpass === true &&
                 <Editpass

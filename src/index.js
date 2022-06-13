@@ -6,6 +6,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import Recoverpassword from "./PasswordRecovery";
 import Recover from "./RecoverPage";
+import Admin from "./admin";
 //import UserForm from "./Signup";
 
 
@@ -21,6 +22,14 @@ root.render(
           element={
             <>
               <Recover />
+            </>
+          }
+        />
+        <Route
+          path="admin"
+          element={
+            <>
+              <Admin />
             </>
           }
         />

@@ -20,7 +20,7 @@ export default function Profile(props) {
         className="textarea"
           value={props.newreport}
           onChange={props.setnewreport}
-          placeholder='please enter your report here(max. 4000 characters)'
+          placeholder='Please enter your report here(max. 4000 characters)'
           wrap="hard"
           maxLength="4000"
         />

@@ -51,6 +51,14 @@
     color: rgb(39, 39, 107);
     box-shadow: 3px 4px 0px 0px #bcbdbe;
 }
+.editreport {
+    border: solid rgb(39, 39, 107);
+    border-radius: 14px;
+    padding: 5px 15px;
+    color: rgb(39, 39, 107);
+    box-shadow: 3px 4px 0px 0px #bcbdbe;
+    margin-right: 30px;
+}
 
 .report-body{
     align-items: center;
