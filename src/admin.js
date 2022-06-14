@@ -24,8 +24,8 @@ export default function Admin() {
     // useEffect(() => {
     //     fetch("http://192.168.70.108:8080/GetUsers")
     //     .then((res)=>res.json())
-    //     .then(json => setusernames(json),
-    //     console.log(usernames))
+    //     .then(json => setusers(json))
+    //     console.log(users);
     // }, []);
 
     const getUsers = async () => {
@@ -97,7 +97,6 @@ export default function Admin() {
                     <div>
                         <input type='search' />
                     </div>
-                    <button onClick={getUsers}>Display users</button>
                     <div>
                         <ul>
                             {users !== null && users.map(el => {
