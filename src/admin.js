@@ -1,16 +1,53 @@
-import {Link} from 'react-router-dom';
-import { useState } from "react";
+import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
 import "./styles.css";
 import "./Forms.css";
 import "./user.css";
 
 export default function Admin() {
-    // const [admins, setadmins] = useState([]);
+    const [admins, setadmins] = useState(null);
     const [admin, setadmin] = useState("");
     const [adminpass, setadminpass] = useState("");
+    const [users, setusers] = useState([]);
+
+    const getAdmin = async () => {
+        const res = await fetch("http://192.168.70.108:8080/GetAdmin/" + admin + "/" + adminpass);
+        const json = await res.json()
+
+        if (!res.ok) {
+            setadmins(null);
+            alert("Wrong admin or password!");
+        }
+        else setadmins(json);
+    }
+
+    // useEffect(() => {
+    //     fetch("http://192.168.70.108:8080/GetUsers")
+    //     .then((res)=>res.json())
+    //     .then(json => setusernames(json),
+    //     console.log(usernames))
+    // }, []);
+
+    const getUsers = async () => {
+        const res = await fetch("http://192.168.70.108:8080/GetUsers")
+        const json = await res.json();
+        setusers(json);
+    }
+
+    const login = () => {
+        if (admin === "" || adminpass === "") {
+            alert("One or more fields are empty")
+        }
+        else {
+            getUsers();
+            getAdmin();
+        }
+
+    }
+
     return (
         <div>
-            {/* {admins === null && */}
+            {admins === null &&
 
                 <div>
                     <div className=" header">
@@ -25,29 +62,51 @@ export default function Admin() {
 
                             <h1 className="welcome">Log in as administrator</h1>
                             <div className="form-inputs">
-                                <label className="form-label">Username: </label>
-                                <input className="form-input" type="text" value={admin} onChange={evt => setadmin(evt.target.value)} placeholder="Enter your username"></input>
+                                <label className="form-label">Admin </label>
+                                <input
+                                    className="form-input"
+                                    type="text"
+                                    value={admin}
+                                    onChange={evt => setadmin(evt.target.value)}
+                                    placeholder="Enter your username" />
                             </div>
 
                             <div className="form-inputs">
-                                <label className="form-label">Password: </label>
-                                <input className="form-input" type="password" value={adminpass} onChange={evt => setadminpass(evt.target.value)} placeholder="Enter your password"></input>
+                                <label className="form-label">Password </label>
+                                <input
+                                    className="form-input"
+                                    type="password"
+                                    value={adminpass}
+                                    onChange={evt => setadminpass(evt.target.value)}
+                                    placeholder="Enter your password" />
                             </div>
 
-                            <button className="login-btn-2">Log in</button>
-                            {/* <div id="forgot-password">
-                                <Link to="/recover">Forgot password?</Link>
-                            </div>
-
-                            <p className="sign-up-bottom">
-                                Don't have an account yet? <br />
-                                <Link id="sign-up" to="/signup">Sign up here</Link>
-                            </p> */}
-
+                            <button className="login-btn-2" onClick={login}>Log in</button>
                         </form>
                     </div>
                 </div>
-                {/* } */}
+            }
+            {admins !== null &&
+                <div>
+                    <div className="header">
+                        <a href="/" className="home">Whistleblowing</a>
+                        <div className="header-right">
+                            <button className="log-out" id="logout-btn"> <a href="/admin">Log out</a></button>
+                        </div>
+                    </div>
+                    <div>
+                        <input type='search' />
+                    </div>
+                    <button onClick={getUsers}>Display users</button>
+                    <div>
+                        <ul>
+                            {users !== null && users.map(el => {
+                                <li>{el.username}</li>
+                            })}
+                        </ul>
+                        <button onClick={() => console.log(users)}>test</button>
+                    </div>
+                </div>}
         </div>
     )
 }

@@ -26,8 +26,6 @@ export default function Profile(props) {
         />
         <br />
         <button className="signup-btn add-report" onClick={props.addReport}>Add report</button>
-
-
     </div>
   );
 }

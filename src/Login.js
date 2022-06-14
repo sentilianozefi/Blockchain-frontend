@@ -25,7 +25,6 @@ export default function Login() {
   const [newemail, setnewemail] = useState("");
   const [newpassword, setnewpassword] = useState("");
   const [oldpassword, setoldpassword] = useState("");
-  const [editeduser, setediteduser] = useState([]);
   const [editpass, seteditpass] = useState(false);
   const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
   const [file, setfile] = useState(null);
@@ -193,13 +192,7 @@ export default function Login() {
       }
     }).then(response =>
       response.json()
-    ).then(json => {
-      console.log(json)
-      setediteduser(
-        json
-      );
-    })
-
+    )
   }
   const updatebtn = () => {
     if (newname === "" || newsurname === "" || newemail === "") {
@@ -227,13 +220,7 @@ export default function Login() {
       }
     }).then(response =>
       response.json()
-    ).then(json => {
-      console.log(json)
-      setediteduser(
-        json
-      );
-    })
-
+    )
   }
   const passwordbtn = () => {
     if (oldpassword === "" || newpassword === "") {
@@ -300,12 +287,12 @@ export default function Login() {
 
               <h1 className="welcome">Log in</h1>
               <div className="form-inputs">
-                <label className="form-label">Username: </label>
+                <label className="form-label">Username </label>
                 <input className="form-input" type="text" value={inputValue} onChange={evt => setValue(evt.target.value)} placeholder="Enter your username"></input>
               </div>
 
               <div className="form-inputs">
-                <label className="form-label">Password: </label>
+                <label className="form-label">Password </label>
                 <input className="form-input" type="password" value={passValue} onChange={evt => setPassValue(evt.target.value)} placeholder="Enter your password"></input>
               </div>
 
@@ -376,7 +363,7 @@ export default function Login() {
         <div>
           <Header
             logout={() => window.location.reload()}
-            setEdittrue={() => setEdit(true)}
+            setEdittrue={() => setEdit(!edit)}
           />
           <div className="edit-form">
             <Image
