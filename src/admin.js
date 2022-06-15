@@ -9,6 +9,7 @@ export default function Admin() {
     const [admin, setadmin] = useState("");
     const [adminpass, setadminpass] = useState("");
     const [users, setusers] = useState([]);
+    const [filter, setfilter] = useState("");
 
     const getAdmin = async () => {
         const res = await fetch("http://192.168.70.108:8080/GetAdmin/" + admin + "/" + adminpass);
@@ -16,22 +17,15 @@ export default function Admin() {
 
         if (!res.ok) {
             setadmins(null);
-            alert("Wrong admin or password!");
+            alert("Wrong username or password!");
         }
-        else setadmins(json);
+        else setadmins(json)
     }
 
-    // useEffect(() => {
-    //     fetch("http://192.168.70.108:8080/GetUsers")
-    //     .then((res)=>res.json())
-    //     .then(json => setusers(json))
-    //     console.log(users);
-    // }, []);
-
     const getUsers = async () => {
-        const res = await fetch("http://192.168.70.108:8080/GetUsers")
-        const json = await res.json();
-        setusers(json);
+        const res = await fetch("http://192.168.70.108:8080/GetUsers");
+        const json = await res.json()
+        setusers(json)
     }
 
     const login = () => {
@@ -80,7 +74,6 @@ export default function Admin() {
                                     onChange={evt => setadminpass(evt.target.value)}
                                     placeholder="Enter your password" />
                             </div>
-
                             <button className="login-btn-2" onClick={login}>Log in</button>
                         </form>
                     </div>
@@ -95,15 +88,15 @@ export default function Admin() {
                         </div>
                     </div>
                     <div>
-                        <input type='search' />
+                        <input value = {filter} onChange = {(evt) => setfilter(evt.target.value)} type='search' />
                     </div>
                     <div>
                         <ul>
-                            {users !== null && users.map(el => {
-                                <li>{el.username}</li>
-                            })}
-                        </ul>
-                        <button onClick={() => console.log(users)}>test</button>
+                            {users.filter((el) => filter === "" || el.includes(filter))
+                            .map((el) => 
+                                <li>{el}</li>
+                            )}
+                            </ul>
                     </div>
                 </div>}
         </div>
