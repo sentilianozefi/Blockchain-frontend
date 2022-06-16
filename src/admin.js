@@ -39,6 +39,14 @@ export default function Admin() {
 
     }
 
+    const disableuser = async (el) => {
+        const res = await fetch("http://192.168.70.108:8080/admindisableuser/" + admins.userName + "/" + el + "/" + true, {
+            method: "POST"
+        })
+        const json = await res.json();
+        alert("User has been disabled!")
+    }
+
     return (
         <div>
             {admins === null &&
@@ -88,15 +96,19 @@ export default function Admin() {
                         </div>
                     </div>
                     <div>
-                        <input value = {filter} onChange = {(evt) => setfilter(evt.target.value)} type='search' />
+                        <input value={filter} onChange={(evt) => setfilter(evt.target.value)} type='search' />
+                        <button onClick={() => console.log(admins)}>test</button>
                     </div>
                     <div>
                         <ul>
                             {users.filter((el) => filter === "" || el.includes(filter))
-                            .map((el) => 
-                                <li>{el}</li>
-                            )}
-                            </ul>
+                                .map((el) =>
+                                    <li>{el}
+
+                                        <button> <Link to={"/admin/reset/" + el + "/" + admins.userName} target='_blank'>Reset password</Link></button> 
+                                        <button onClick={()=>disableuser(el)}>Disable user</button></li>
+                                )}
+                        </ul>
                     </div>
                 </div>}
         </div>

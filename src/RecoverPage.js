@@ -25,8 +25,6 @@ export default function Recover() {
             })
     }
 
-
-
     const reset = () => {
         if (newPassword === "" || confirmpass === "") {
             alert("One or more of the required fields is empty!")

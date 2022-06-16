@@ -310,7 +310,7 @@ export default function Login() {
           </div>
         </div>}
 
-      {users !== null && edit === false &&
+      {users !== null && edit === false && users.state === false &&
 
         <div>
 
@@ -399,6 +399,8 @@ export default function Login() {
           </div>
         </div>
       }
+      {users !== null && edit === false && users.state === true &&
+      <div>Sorry you are disabled</div>}
 
     </div>
 

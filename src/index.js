@@ -7,6 +7,7 @@ import Signup from "./Signup";
 import Recoverpassword from "./PasswordRecovery";
 import Recover from "./RecoverPage";
 import Admin from "./admin";
+import ChangeUserPass from "./adminchangepassword";
 //import UserForm from "./Signup";
 
 
@@ -65,6 +66,12 @@ root.render(
             </>
           }
         />
+        <Route
+          path="admin/reset/:username/:admin"
+          element={
+            <>
+              <ChangeUserPass />
+            </>} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
