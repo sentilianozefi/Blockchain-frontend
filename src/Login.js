@@ -31,6 +31,7 @@ export default function Login() {
   const [base64URL, setbase64URL] = useState("");
   const [report2, setreport2] = useState("");
   const [arr, setArr] = useState([]);
+  const [report2title, setreport2title] = useState("");
 
   const getBase64 = (file) => {
     return new Promise(resolve => {
@@ -120,7 +121,7 @@ export default function Login() {
   useEffect(() => {
     let temp = reports
     temp.map(el => {
-      el = { ...el, display: false }
+      el = { ...el, displayEdit: false }
     })
     setArr(temp);
   }, [reports])
@@ -240,7 +241,7 @@ export default function Login() {
     }
   }
   const editreport = (id) => {
-    fetch("http://192.168.70.108:8080/UpdateReportEssence/" + id + "/" + report2, {
+    fetch("http://192.168.70.108:8080/UpdateReportEssence/" + id + "/" + report2 + "/"+ report2title, {
       method: 'PUT',
       headers: {
         "Content-type": "application/json; charset=UTF-8"
@@ -254,16 +255,17 @@ export default function Login() {
         getReport();
         alert("You successfully edited your report!");
         setreport2("");
+        setreport2title("");
       }
     }
     )
   }
 
-  const reportedit = (id) =>{
-    if(report2 === ""){
-      alert("You can't submit an empty report!")
+  const reportedit = (id) => {
+    if (report2 === "" || report2title === "") {
+      alert("You can't submit an empty report or an empty title!")
     }
-    else{
+    else {
       editreport(id);
       fetchData();
     }
@@ -308,7 +310,8 @@ export default function Login() {
 
             </form>
           </div>
-        </div>}
+        </div>
+      }
 
       {users !== null && edit === false && users.state === false &&
 
@@ -316,7 +319,7 @@ export default function Login() {
 
           <Header
             logout={() => window.location.reload()}
-            setEdittrue={() => setEdit(true) }
+            setEdittrue={() => setEdit(true)}
           />
 
           <div className="userpage">
@@ -331,24 +334,35 @@ export default function Login() {
                 addReport={addReport}
               />
               <div className="allreports">
-                {arr !== null && arr.map((el) => <div className="reports"><li key={el.username} className="reportlist">
+                {arr !== null && arr.map((el) => <div className="reports">{el.display === true && <li key={el.username} className="reportlist">
                   <div>
                     <h3>{el.title}</h3>{el.report}
                   </div>
                   <br />
                   {el.canceled === false ?
                     <div>
-                      <button onClick={() => { el.display = !el.display; fetchData() }} className="editreport">Edit</button>
-                      {el.display &&
-                        <div><textarea value={report2} onChange={(e) => setreport2(e.target.value)} />
-                          <button onClick={() =>{reportedit(el.id);el.display = !el.display}}>Submit</button></div>
+                      <button onClick={() => { el.displayEdit = !el.displayEdit; fetchData() }} className="editreport">Edit</button>
+                      {el.displayEdit &&
+                        <div>
+                          <input
+                            type="text"
+                            value={report2title}
+                            onChange={e => setreport2title(e.target.value)}
+                            placeholder="Edited title"
+                          />
+                          <textarea
+                            value={report2}
+                            onChange={(e) => setreport2(e.target.value)}
+                            placeholder="Edited report"
+                          />
+                          <button onClick={() => { reportedit(el.id); el.displayEdit = !el.displayEdit }}>Submit</button></div>
                       }
                       <button
                         onClick={() => cancelReport(el.id)}
                         className="cancelreport"
                         value={el.id}>Cancel report</button>
                     </div> :
-                    <button className="cancelreport" disabled>Canceled</button>}</li></div>)}
+                    <button className="cancelreport" disabled>Canceled</button>}</li>}</div>)}
               </div>
             </div>
             <div>
@@ -358,7 +372,7 @@ export default function Login() {
           </div>
         </div>
       }
-      {edit === true && 
+      {edit === true &&
 
         <div>
           <Header
@@ -400,7 +414,7 @@ export default function Login() {
         </div>
       }
       {users !== null && edit === false && users.state === true &&
-      <div>Sorry you are disabled</div>}
+        <div>Sorry you are disabled</div>}
 
     </div>
 

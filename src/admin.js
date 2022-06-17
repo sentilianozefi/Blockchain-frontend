@@ -10,6 +10,38 @@ export default function Admin() {
     const [adminpass, setadminpass] = useState("");
     const [users, setusers] = useState([]);
     const [filter, setfilter] = useState("");
+    const [reports, setReports] = useState([]);
+    const [replist, setReplist] = useState(false);
+
+    const hidereport = (el) => {
+        fetch("http://192.168.70.108:8080/Updatevisibility/"+false+"/"+el.id, {
+          method: 'PUT',
+          headers: {
+            "Content-type": "application/json; charset=UTF-8"
+          }
+        }).then(response => {
+          response.json(),
+            getReport(el.username),
+            alert("You hid a report!")
+        }
+        )
+    
+      }
+
+      const showreport = (el) => {
+        fetch("http://192.168.70.108:8080/Updatevisibility/"+true+"/"+el.id, {
+          method: 'PUT',
+          headers: {
+            "Content-type": "application/json; charset=UTF-8"
+          }
+        }).then(response => {
+          response.json(),
+            getReport(el.username),
+            alert("You showed a report!")
+        }
+        )
+    
+      }
 
     const getAdmin = async () => {
         const res = await fetch("http://192.168.70.108:8080/GetAdmin/" + admin + "/" + adminpass);
@@ -39,12 +71,24 @@ export default function Admin() {
 
     }
 
-    const disableuser = async (el) => {
-        const res = await fetch("http://192.168.70.108:8080/admindisableuser/" + admins.userName + "/" + el + "/" + true, {
+    const disableuser = (el) => {
+        fetch("http://192.168.70.108:8080/admindisableuser/" + admins.userName + "/" + el + "/" + true, {
             method: "POST"
-        })
-        const json = await res.json();
-        alert("User has been disabled!")
+        }).then((res) => res.json()).then(alert("User has been disabled!"),
+            getUsers())
+    }
+    const enableuser = (el) => {
+        fetch("http://192.168.70.108:8080/admindisableuser/" + admins.userName + "/" + el + "/" + false, {
+            method: "POST"
+        }).then((res) => res.json()).then(alert("User has been enabled!"),
+            getUsers())
+    }
+
+    const getReport = async (el) => {
+        const res = await fetch("http://192.168.70.108:8080/GetReports/" + el);
+        const json = await res.json()
+        setReports(json)
+
     }
 
     return (
@@ -87,7 +131,7 @@ export default function Admin() {
                     </div>
                 </div>
             }
-            {admins !== null &&
+            {admins !== null && replist === false &&
                 <div>
                     <div className="header">
                         <a href="/" className="home">Whistleblowing</a>
@@ -97,20 +141,27 @@ export default function Admin() {
                     </div>
                     <div>
                         <input value={filter} onChange={(evt) => setfilter(evt.target.value)} type='search' />
-                        <button onClick={() => console.log(admins)}>test</button>
                     </div>
                     <div>
                         <ul>
-                            {users.filter((el) => filter === "" || el.includes(filter))
+                            {users.filter((el) => filter === "" || el.userName.includes(filter))
                                 .map((el) =>
-                                    <li>{el}
-
-                                        <button> <Link to={"/admin/reset/" + el + "/" + admins.userName} target='_blank'>Reset password</Link></button> 
-                                        <button onClick={()=>disableuser(el)}>Disable user</button></li>
+                                    <li><h1 onClick={() => { setReplist(true); getReport(el.userName) }}>{el.userName}</h1>
+                                        <button> <Link to={"/admin/reset/" + el.userName + "/" + admins.userName} target='_blank'>Reset password</Link></button>
+                                        {el.state === false ? <button onClick={() => disableuser(el.userName)}>Disable user</button> : <button onClick={() => enableuser(el.userName)}>Enable user</button>}
+                                    </li>
                                 )}
                         </ul>
                     </div>
-                </div>}
+                </div>
+            }
+            {admins !== null && replist === true && <div>
+                {reports && reports.map((el) => <ul><li><p>{el.username}</p><p>{el.title}</p><p>{el.report}</p>  
+                {el.display === true ? 
+                <button value = {el.id} onClick={()=>hidereport(el)}>Hide report</button> : <button value = {el.id} onClick={()=>showreport(el)}>Show report</button>}</li></ul>)}
+                <button onClick={() => setReplist(false)}>Close</button>
+            </div>
+            }
         </div>
     )
 }
