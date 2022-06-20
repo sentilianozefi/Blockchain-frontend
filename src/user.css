@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
     background: #efeff0;
+    height: 100vh;
 }
 
 .edit-form {
@@ -81,4 +82,24 @@
     align-items: center;
     justify-content: center;
     display: flex;
+}
+.adminPageUsers{
+    display: flex;
+    flex-direction: row;
+    margin: 30px;
+}
+.adminUsersList{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.adminbuttons{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 20px;
+}
+.resetpasslink a{
+    color:black;
+    text-decoration: none;
 }

@@ -386,7 +386,7 @@ export default function Login() {
               handleFileInputChange={handleFileInputChange} />
             <div className="edit-profile">
               <EditUser
-                newname={newname}
+                newname={users.name.parse}
                 setnewname={e => setnewname(e.target.value)}
                 newsurname={newsurname}
                 setnewsurname={e => setnewsurname(e.target.value)}

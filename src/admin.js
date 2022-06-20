@@ -14,34 +14,34 @@ export default function Admin() {
     const [replist, setReplist] = useState(false);
 
     const hidereport = (el) => {
-        fetch("http://192.168.70.108:8080/Updatevisibility/"+false+"/"+el.id, {
-          method: 'PUT',
-          headers: {
-            "Content-type": "application/json; charset=UTF-8"
-          }
+        fetch("http://192.168.70.108:8080/Updatevisibility/" + false + "/" + el.id, {
+            method: 'PUT',
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
         }).then(response => {
-          response.json(),
-            getReport(el.username),
-            alert("You hid a report!")
+            response.json(),
+                getReport(el.username),
+                alert("You hid a report!")
         }
         )
-    
-      }
 
-      const showreport = (el) => {
-        fetch("http://192.168.70.108:8080/Updatevisibility/"+true+"/"+el.id, {
-          method: 'PUT',
-          headers: {
-            "Content-type": "application/json; charset=UTF-8"
-          }
+    }
+
+    const showreport = (el) => {
+        fetch("http://192.168.70.108:8080/Updatevisibility/" + true + "/" + el.id, {
+            method: 'PUT',
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
         }).then(response => {
-          response.json(),
-            getReport(el.username),
-            alert("You showed a report!")
+            response.json(),
+                getReport(el.username),
+                alert("You showed a report!")
         }
         )
-    
-      }
+
+    }
 
     const getAdmin = async () => {
         const res = await fetch("http://192.168.70.108:8080/GetAdmin/" + admin + "/" + adminpass);
@@ -143,22 +143,34 @@ export default function Admin() {
                         <input value={filter} onChange={(evt) => setfilter(evt.target.value)} type='search' />
                     </div>
                     <div>
-                        <ul>
+                        <div className='adminUsersList'>
                             {users.filter((el) => filter === "" || el.userName.includes(filter))
-                                .map((el) =>
-                                    <li><h1 onClick={() => { setReplist(true); getReport(el.userName) }}>{el.userName}</h1>
-                                        <button> <Link to={"/admin/reset/" + el.userName + "/" + admins.userName} target='_blank'>Reset password</Link></button>
-                                        {el.state === false ? <button onClick={() => disableuser(el.userName)}>Disable user</button> : <button onClick={() => enableuser(el.userName)}>Enable user</button>}
-                                    </li>
+                                .map((el) => <div className='adminPageUsers'>
+                                    <div>
+                                        <h5>Username: {el.userName}</h5>
+                                        <h5>Name: {el.name}</h5>
+                                        <h5>Surname: {el.surname}</h5>
+                                    </div>
+                                    <div className='adminbuttons'>
+                                        <button onClick={() => { setReplist(true); getReport(el.userName) }} >Reports</button>
+                                        <button className='resetpasslink'> <Link to={"/admin/reset/" + el.userName + "/" + admins.userName} target='_blank'>Reset password</Link></button>
+                                        {el.state === false ?
+                                            <button onClick={() => disableuser(el.userName)}>Disable user</button> :
+                                            <button onClick={() => enableuser(el.userName)}>Enable user</button>}
+                                    </div>
+
+                                </div>
                                 )}
-                        </ul>
+                        </div>
                     </div>
                 </div>
             }
             {admins !== null && replist === true && <div>
-                {reports && reports.map((el) => <ul><li><p>{el.username}</p><p>{el.title}</p><p>{el.report}</p>  
-                {el.display === true ? 
-                <button value = {el.id} onClick={()=>hidereport(el)}>Hide report</button> : <button value = {el.id} onClick={()=>showreport(el)}>Show report</button>}</li></ul>)}
+                {reports && reports.map((el) => <ul><li><p>{el.username}</p><p>{el.title}</p><p>{el.report}</p>
+                    {el.display === true ?
+                        <button value={el.id} onClick={() => hidereport(el)}>Hide report</button> :
+                        <button value={el.id} onClick={() => showreport(el)}>Show report</button>}
+                </li></ul>)}
                 <button onClick={() => setReplist(false)}>Close</button>
             </div>
             }
