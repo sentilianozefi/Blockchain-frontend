@@ -54,16 +54,25 @@ export default function Login() {
     });
   };
 
-  const PostImg = async () => {
-    const res = await fetch('http://192.168.70.108:8080/setpic/' + inputValue, { method: 'POST', body: base64URL })
-    const json = await res.json();
-
+  const PostImg = () => {
+    fetch('http://192.168.70.108:8080/setpic/' + inputValue, {
+      method: 'POST',
+      body: base64URL
+    })
+      .then((res) => {
+          res.json()
+      })
   }
   const imgbtn = () => {
+    if(base64URL === ""){
+      alert("Please select a picture!")
+    }
+    else{
     PostImg();
     setEdit(false);
     alert("You have successfully uploaded your profile picture!");
     fetchData();
+    }
   }
 
 
@@ -241,7 +250,7 @@ export default function Login() {
     }
   }
   const editreport = (id) => {
-    fetch("http://192.168.70.108:8080/UpdateReportEssence/" + id + "/" + report2 + "/"+ report2title, {
+    fetch("http://192.168.70.108:8080/UpdateReportEssence/" + id + "/" + report2 + "/" + report2title, {
       method: 'PUT',
       headers: {
         "Content-type": "application/json; charset=UTF-8"
