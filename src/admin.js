@@ -140,7 +140,7 @@ export default function Admin() {
                         </div>
                     </div>
                     <div>
-                        <input value={filter} onChange={(evt) => setfilter(evt.target.value)} type='search' />
+                        <input className="search-user" value={filter} onChange={(evt) => setfilter(evt.target.value)} type='search' placeholder='Search user'/>
                     </div>
                     <div>
                         <div className='adminUsersList'>
