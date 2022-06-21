@@ -140,7 +140,7 @@ export default function Admin() {
                         </div>
                     </div>
                     <div>
-                        <input className="search-user" value={filter} onChange={(evt) => setfilter(evt.target.value)} type='search' placeholder='Search user'/>
+                        <input className="form-control" id="search-user" value={filter} onChange={(evt) => setfilter(evt.target.value)} type='search' placeholder='Search user'/>
                     </div>
                     <div>
                         <div className='adminUsersList'>
@@ -166,7 +166,7 @@ export default function Admin() {
                 </div>
             }
             {admins !== null && replist === true && <div>
-                {reports && reports.map((el) => <ul><li><p>{el.username}</p><p>{el.title}</p><p>{el.report}</p>
+                {reports && reports.map((el) => <ul><h4>User {el.username}</h4><li><p>Date created: {el.creationdate}</p><h6>{el.title}</h6><p>{el.report}</p>
                     {el.display === true ?
                         <button value={el.id} onClick={() => hidereport(el)}>Hide report</button> :
                         <button value={el.id} onClick={() => showreport(el)}>Show report</button>}
