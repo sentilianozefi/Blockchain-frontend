@@ -363,6 +363,7 @@ export default function Login() {
                             value={report2}
                             onChange={(e) => setreport2(e.target.value)}
                             placeholder="Edited report"
+                            maxLength="4000"
                           />
                           <button onClick={() => { reportedit(el.id); el.displayEdit = !el.displayEdit }}>Submit</button></div>
                       }

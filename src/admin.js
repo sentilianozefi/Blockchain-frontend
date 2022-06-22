@@ -88,7 +88,6 @@ export default function Admin() {
         const res = await fetch("http://192.168.70.108:8080/GetReports/" + el);
         const json = await res.json()
         setReports(json)
-
     }
 
     return (
@@ -139,6 +138,7 @@ export default function Admin() {
                             <button className="log-out" id="logout-btn"> <a href="/admin">Log out</a></button>
                         </div>
                     </div>
+                    <div  className='admin-body'>
                     <div>
                         <input className="form-control" id="search-user" value={filter} onChange={(evt) => setfilter(evt.target.value)} type='search' placeholder='Search user'/>
                     </div>
@@ -152,7 +152,7 @@ export default function Admin() {
                                         <h5>Surname: {el.surname}</h5>
                                     </div>
                                     <div className='adminbuttons'>
-                                        <button onClick={() => { setReplist(true); getReport(el.userName) }} >Reports</button>
+                                        <button onClick={()=>{setReplist(true);getReport(el.userName)}}>Reports</button>
                                         <button className='resetpasslink'> <Link to={"/admin/reset/" + el.userName + "/" + admins.userName} target='_blank'>Reset password</Link></button>
                                         {el.state === false ?
                                             <button onClick={() => disableuser(el.userName)}>Disable user</button> :
@@ -163,14 +163,15 @@ export default function Admin() {
                                 )}
                         </div>
                     </div>
+                    </div>
                 </div>
             }
             {admins !== null && replist === true && <div>
-                {reports && reports.map((el) => <ul><h4>User {el.username}</h4><li><p>Date created: {el.creationdate}</p><h6>{el.title}</h6><p>{el.report}</p>
+                {reports.length !== 0 ? reports.map((el) => <ul><h4>User {el.username}</h4><li><p>Date created: {el.creationdate}</p><h6>{el.title}</h6><p>{el.report}</p>
                     {el.display === true ?
                         <button value={el.id} onClick={() => hidereport(el)}>Hide report</button> :
                         <button value={el.id} onClick={() => showreport(el)}>Show report</button>}
-                </li></ul>)}
+                </li></ul>) : <div><h1>This user has no reports!</h1></div>}
                 <button onClick={() => setReplist(false)}>Close</button>
             </div>
             }
