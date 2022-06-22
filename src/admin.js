@@ -147,16 +147,19 @@ export default function Admin() {
                             {users.filter((el) => filter === "" || el.userName.includes(filter))
                                 .map((el) => <div className='adminPageUsers'>
                                     <div>
-                                        <h5>Username: {el.userName}</h5>
-                                        <h5>Name: {el.name}</h5>
-                                        <h5>Surname: {el.surname}</h5>
+                                        <h6>Username: </h6>
+                                        <h3>{el.userName}</h3>
+                                        <h6>Name: </h6>
+                                        <h4>{el.name}</h4>
+                                        <h6>Surname: </h6>
+                                        <h4>{el.surname}</h4>
                                     </div>
                                     <div className='adminbuttons'>
-                                        <button onClick={()=>{setReplist(true);getReport(el.userName)}}>Reports</button>
-                                        <button className='resetpasslink'> <Link to={"/admin/reset/" + el.userName + "/" + admins.userName} target='_blank'>Reset password</Link></button>
+                                        <button className='admin-btn' onClick={()=>{setReplist(true);getReport(el.userName)}}>Reports</button>
+                                        <button className='admin-btn'> <Link to={"/admin/reset/" + el.userName + "/" + admins.userName} target='_blank'>Reset password</Link></button>
                                         {el.state === false ?
-                                            <button onClick={() => disableuser(el.userName)}>Disable user</button> :
-                                            <button onClick={() => enableuser(el.userName)}>Enable user</button>}
+                                            <button className='admin-btn' onClick={() => disableuser(el.userName)}>Disable user</button> :
+                                            <button className='admin-btn' onClick={() => enableuser(el.userName)}>Enable user</button>}
                                     </div>
 
                                 </div>
@@ -166,13 +169,21 @@ export default function Admin() {
                     </div>
                 </div>
             }
-            {admins !== null && replist === true && <div>
-                {reports.length !== 0 ? reports.map((el) => <ul><h4>User {el.username}</h4><li><p>Date created: {el.creationdate}</p><h6>{el.title}</h6><p>{el.report}</p>
+            {admins !== null && replist === true && <div className='admin__reports'>
+                {reports.length !== 0 ? reports.map((el) =><div className='admin-pg-report'>
+                    <div>
+                    <p>Author: {el.username}</p>
+                    <p>Date created: {el.creationdate}</p>
+                    <p>Canceled: {el.canceled.toString()}</p>
                     {el.display === true ?
-                        <button value={el.id} onClick={() => hidereport(el)}>Hide report</button> :
-                        <button value={el.id} onClick={() => showreport(el)}>Show report</button>}
-                </li></ul>) : <div><h1>This user has no reports!</h1></div>}
-                <button onClick={() => setReplist(false)}>Close</button>
+                        <button className='admin-btn' value={el.id} onClick={() => hidereport(el)}>Hide report</button> :
+                        <button className='admin-btn' value={el.id} onClick={() => showreport(el)}>Show report</button>}
+                        </div>
+                        <div>
+                        <h6>{el.title}</h6>
+                    <textarea style={{'width':'300px'}} value={el.report}/></div>
+                </div>) : <div className='no-reports'><h1>This user has no reports!</h1></div>}
+                <button className='edit-btns' id="admin-close-btn" onClick={() => setReplist(false)}>Close</button>
             </div>
             }
         </div>

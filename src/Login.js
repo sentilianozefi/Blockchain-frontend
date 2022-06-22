@@ -424,7 +424,15 @@ export default function Login() {
         </div>
       }
       {users !== null && edit === false && users.state === true &&
-        <div>Sorry you are disabled</div>}
+      <div>
+      <div className=" header">
+      <a href="/" className="home">Whistleblowing</a>
+      <div className="header-right">
+        <a className="login-btn" href="/login">Log in</a>
+        <a className="signup-btn" href="/signup">Sign up</a>
+      </div>
+    </div>
+        <div className="disabled"><div><h1>Sorry your account is disabled!</h1></div></div></div>}
 
     </div>
 

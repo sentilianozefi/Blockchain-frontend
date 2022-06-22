@@ -147,3 +147,10 @@ a {
 .login-link-at-signup {
   color: rgb(50, 156, 255)
 }
+.disabled{
+  display: flex;
+  background: #efeff0;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+}
