@@ -343,7 +343,7 @@ export default function Login() {
                 addReport={addReport}
               />
               <div className="allreports">
-                {arr !== null && arr.map((el) => <div className="reports">{el.display === true && <li key={el.username} className="reportlist">
+                {arr !== null && arr.map((el) => el.display === true && <div className="reports"><li key={el.username} className="reportlist">
                   <div>
                     <h3>{el.title}</h3>{el.report}
                   </div>
@@ -372,7 +372,7 @@ export default function Login() {
                         className="cancelreport"
                         value={el.id}>Cancel report</button>
                     </div> :
-                    <button className="cancelreport" disabled>Canceled</button>}</li>}</div>)}
+                    <button className="cancelreport" disabled>Canceled</button>}</li></div>)}
               </div>
             </div>
             <div>
