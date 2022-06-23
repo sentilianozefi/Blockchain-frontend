@@ -159,6 +159,6 @@ a {
   align-items: center;
 }
 
-/* .upload__pic{
-  transform: translate(-5vw,-5vh);  
-} */
+.upload__pic{
+  transform: translate(-85px,-50px);  
+}
