@@ -42,12 +42,12 @@ export default function ChangeUserPass() {
 
   return (
     <div className="recover-body ">
-    <div className="recover-area2">
-      <h2>Reset password for user "{params.username}"</h2>
-      <br /><br/>
-      <input className="form-control" type="password" value={newpass} onChange={(e) => setnewpass(e.target.value)} placeholder="New password" /><br/>
-      <button className="login-btn-2" onClick={passwordbtn}>Reset</button>
-    </div>
+      <div className="recover-area2">
+        <h2>Reset password for user "{params.username}"</h2>
+        <br /><br />
+        <input className="form-control" type="password" value={newpass} onChange={(e) => setnewpass(e.target.value)} placeholder="New password" /><br />
+        <button className="login-btn-2" onClick={passwordbtn}>Reset</button>
+      </div>
     </div>
   )
 }

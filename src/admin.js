@@ -105,7 +105,7 @@ export default function Admin() {
                     <div className="login-body">
                         <div className="login-form home-divs">
                             <form onSubmit={e => e.preventDefault()}>
-                                <h1 className="welcome">Log in<br/>as administrator</h1>
+                                <h1 className="welcome">Log in<br />as administrator</h1>
                                 <div className="form-inputs">
                                     <label className="form-label">Admin-Username </label>
                                     <input
@@ -135,7 +135,7 @@ export default function Admin() {
                     <div className="header">
                         <a href="/" className="home">Whistleblowing</a>
                         <div className="header-right">
-                            <button className="log-out" id="logout-btn" onClick={()=>window.location.reload()}>Log out</button>
+                            <button className="log-out" id="logout-btn" onClick={() => window.location.reload()}>Log out</button>
                         </div>
                     </div>
                     <div className='admin-body'>
