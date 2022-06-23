@@ -36,11 +36,10 @@
 
   .form-input{
     display: block;
-    outline: none;
     border-radius:2px;
     height:40px;
     width:450px;
-    border: none;
+    border: 2px solid #efeff0;
     padding-left: 10px;
 
   }
@@ -78,7 +77,8 @@
 }
 
 .welcome {
-    margin: 10px;
+  margin-top: -50px;
+  margin-bottom: 30px;
     font-size: 2rem;
     font-family: 'Poppins', sans-serif;
 }

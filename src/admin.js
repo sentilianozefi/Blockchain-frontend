@@ -102,31 +102,31 @@ export default function Admin() {
                             <a className="signup-btn" href="/signup">Sign up</a>
                         </div>
                     </div>
-                    <div className="form-content-2" >
-                        <form onSubmit={e => e.preventDefault()} className="login-form">
-
-                            <h1 className="welcome">Log in as administrator</h1>
-                            <div className="form-inputs">
-                                <label className="form-label">Admin </label>
-                                <input
-                                    className="form-input"
-                                    type="text"
-                                    value={admin}
-                                    onChange={evt => setadmin(evt.target.value)}
-                                    placeholder="Enter your username" />
-                            </div>
-
-                            <div className="form-inputs">
-                                <label className="form-label">Password </label>
-                                <input
-                                    className="form-input"
-                                    type="password"
-                                    value={adminpass}
-                                    onChange={evt => setadminpass(evt.target.value)}
-                                    placeholder="Enter your password" />
-                            </div>
-                            <button className="login-btn-2" onClick={login}>Log in</button>
-                        </form>
+                    <div className="login-body">
+                        <div className="login-form home-divs">
+                            <form onSubmit={e => e.preventDefault()}>
+                                <h1 className="welcome">Log in<br/>as administrator</h1>
+                                <div className="form-inputs">
+                                    <label className="form-label">Admin-Username </label>
+                                    <input
+                                        className="form-input"
+                                        type="text" value={admin}
+                                        onChange={evt => setadmin(evt.target.value)}
+                                        placeholder="Enter your username">
+                                    </input>
+                                </div>
+                                <div className="form-inputs">
+                                    <label className="form-label">Password </label>
+                                    <input
+                                        className="form-input"
+                                        type="password" value={adminpass}
+                                        onChange={evt => setadminpass(evt.target.value)}
+                                        placeholder="Enter your password">
+                                    </input>
+                                </div>
+                                <button className="login-btn-2" onClick={login}>Log in</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             }
@@ -135,53 +135,53 @@ export default function Admin() {
                     <div className="header">
                         <a href="/" className="home">Whistleblowing</a>
                         <div className="header-right">
-                            <button className="log-out" id="logout-btn"> <a href="/admin">Log out</a></button>
+                            <button className="log-out" id="logout-btn" onClick={()=>window.location.reload()}>Log out</button>
                         </div>
                     </div>
-                    <div  className='admin-body'>
-                    <div>
-                        <input className="form-control" id="search-user" value={filter} onChange={(evt) => setfilter(evt.target.value)} type='search' placeholder='Search user'/>
-                    </div>
-                    <div>
-                        <div className='adminUsersList'>
-                            {users.filter((el) => filter === "" || el.userName.includes(filter))
-                                .map((el) => <div className='adminPageUsers'>
-                                    <div>
-                                        <h6>Username: </h6>
-                                        <h3>{el.userName}</h3>
-                                        <h6>Name: </h6>
-                                        <h4>{el.name}</h4>
-                                        <h6>Surname: </h6>
-                                        <h4>{el.surname}</h4>
-                                    </div>
-                                    <div className='adminbuttons'>
-                                        <button className='admin-btn' onClick={()=>{setReplist(true);getReport(el.userName)}}>Reports</button>
-                                        <button className='admin-btn'> <Link to={"/admin/reset/" + el.userName + "/" + admins.userName} target='_blank'>Reset password</Link></button>
-                                        {el.state === false ?
-                                            <button className='admin-btn' onClick={() => disableuser(el.userName)}>Disable user</button> :
-                                            <button className='admin-btn' onClick={() => enableuser(el.userName)}>Enable user</button>}
-                                    </div>
+                    <div className='admin-body'>
+                        <div>
+                            <input className="form-control" id="search-user" value={filter} onChange={(evt) => setfilter(evt.target.value)} type='search' placeholder='Search user' />
+                        </div>
+                        <div>
+                            <div className='adminUsersList'>
+                                {users.filter((el) => filter === "" || el.userName.includes(filter))
+                                    .map((el) => <div className='adminPageUsers'>
+                                        <div>
+                                            <h6>Username: </h6>
+                                            <h3>{el.userName}</h3>
+                                            <h6>Name: </h6>
+                                            <h4>{el.name}</h4>
+                                            <h6>Surname: </h6>
+                                            <h4>{el.surname}</h4>
+                                        </div>
+                                        <div className='adminbuttons'>
+                                            <button className='admin-btn' onClick={() => { setReplist(true); getReport(el.userName) }}>Reports</button>
+                                            <button className='admin-btn'> <Link to={"/admin/reset/" + el.userName + "/" + admins.userName} target='_blank'>Reset password</Link></button>
+                                            {el.state === false ?
+                                                <button className='admin-btn' onClick={() => disableuser(el.userName)}>Disable user</button> :
+                                                <button className='admin-btn' onClick={() => enableuser(el.userName)}>Enable user</button>}
+                                        </div>
 
-                                </div>
-                                )}
+                                    </div>
+                                    )}
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             }
             {admins !== null && replist === true && <div className='admin__reports'>
-                {reports.length !== 0 ? reports.map((el) =><div className='admin-pg-report'>
+                {reports.length !== 0 ? reports.map((el) => <div className='admin-pg-report'>
                     <div>
-                    <p>Author: {el.username}</p>
-                    <p>Date created: {el.creationdate}</p>
-                    <p>Canceled: {el.canceled.toString()}</p>
-                    {el.display === true ?
-                        <button className='admin-btn' value={el.id} onClick={() => hidereport(el)}>Hide report</button> :
-                        <button className='admin-btn' value={el.id} onClick={() => showreport(el)}>Show report</button>}
-                        </div>
-                        <div>
+                        <p>Author: {el.username}</p>
+                        <p>Date created: {el.creationdate}</p>
+                        <p>Canceled: {el.canceled.toString()}</p>
+                        {el.display === true ?
+                            <button className='admin-btn' value={el.id} onClick={() => hidereport(el)}>Hide report</button> :
+                            <button className='admin-btn' value={el.id} onClick={() => showreport(el)}>Show report</button>}
+                    </div>
+                    <div>
                         <h6>{el.title}</h6>
-                    <textarea style={{'width':'300px'}} value={el.report}/></div>
+                        <textarea style={{ 'width': '300px' }} value={el.report} /></div>
                 </div>) : <div className='no-reports'><h1>This user has no reports!</h1></div>}
                 <button className='edit-btns' id="admin-close-btn" onClick={() => setReplist(false)}>Close</button>
             </div>

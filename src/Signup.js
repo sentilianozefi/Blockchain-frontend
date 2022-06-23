@@ -88,7 +88,7 @@ export default function Signup() {
         <form onSubmit={e => e.preventDefault()} className='form'>
           <h1>Sign up</h1>
           <div className='form-inputs'>
-            <label className='form-label'>Name: </label>
+            <label className='form-label'>Name </label>
             <input className='form-input'
               type="text"
               placeholder="Enter your name"
@@ -98,7 +98,7 @@ export default function Signup() {
             />
           </div>
           <div className='form-inputs'>
-            <label className='form-label'>Surname: </label>
+            <label className='form-label'>Surname </label>
             <input className='form-input'
               type="text"
               placeholder="Enter your surname"
@@ -108,7 +108,7 @@ export default function Signup() {
             />
           </div>
           <div className='form-inputs'>
-            <label className='form-label'>E-mail: </label>
+            <label className='form-label'>E-mail </label>
             <input className='form-input'
               type="text"
               placeholder="Enter your e-mail"
@@ -118,7 +118,7 @@ export default function Signup() {
             />
           </div>
           <div className='form-inputs'>
-            <label className='form-label'>Username: </label>
+            <label className='form-label'>Username </label>
             <input className='form-input'
               type="text"
               placeholder="Enter a username"
@@ -128,7 +128,7 @@ export default function Signup() {
             />
           </div>
           <div className='form-inputs'>
-            <label className='form-label'>Password: </label>
+            <label className='form-label'>Password </label>
             <input className='form-input'
               type="password"
               placeholder="Create a password"

@@ -11,7 +11,7 @@ export default function App() {
         <div className="header-right">
           <a className="login-btn" href="/login">Log in</a>
           <a className="signup-btn" href="/signup">Sign up</a>
-          <a className="login-btn" href = "/admin">	&#xf406; admin</a>
+          <a className="login-btn" href = "/admin"> Admin</a>
         </div>
       </div>
       <div className="body">

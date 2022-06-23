@@ -8,8 +8,6 @@ import Recoverpassword from "./PasswordRecovery";
 import Recover from "./RecoverPage";
 import Admin from "./admin";
 import ChangeUserPass from "./adminchangepassword";
-//import UserForm from "./Signup";
-
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);

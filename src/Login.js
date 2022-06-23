@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-import "./styles.css";
-import "./Forms.css";
+// import "./styles.css";
+// import "./Forms.css";
+import "./userProfile.css";
+import "./Login.css";
 import "./user.css";
 import profileicon from './profileicon.png';
 import React, { useEffect, useState } from "react";
@@ -8,8 +10,15 @@ import Profile from "./userProfile";
 import EditUser from "./editUser";
 import Editpass from "./editpass";
 import Header from "./header";
-import "./reports.css"
+import "./reports.css";
 import Image from "./Image";
+import { AiFillEdit } from "react-icons/ai"
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 export default function Login() {
 
@@ -32,6 +41,7 @@ export default function Login() {
   const [report2, setreport2] = useState("");
   const [arr, setArr] = useState([]);
   const [report2title, setreport2title] = useState("");
+  const [reportList, setreportList] = useState(false);
 
   const getBase64 = (file) => {
     return new Promise(resolve => {
@@ -60,19 +70,15 @@ export default function Login() {
       body: base64URL
     })
       .then((res) => {
-          res.json()
+        res.json()
       })
   }
   const imgbtn = () => {
-    if(base64URL === ""){
-      alert("Please select a picture!")
-    }
-    else{
-    PostImg();
-    setEdit(false);
-    alert("You have successfully uploaded your profile picture!");
-    fetchData();
-    }
+      PostImg();
+      setbase64URL("");
+      setEdit(false);
+      alert("You have successfully uploaded your profile picture!");
+      fetchData();
   }
 
 
@@ -280,6 +286,16 @@ export default function Login() {
     }
 
   }
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   return (
     <div>
@@ -289,40 +305,41 @@ export default function Login() {
           <div className=" header">
             <a href="/" className="home">Whistleblowing</a>
             <div className="header-right">
-              <a className="login-btn" href="/login">Log in</a>
-              <a className="signup-btn" href="/signup">Sign up</a>
+              <Link to="/admin"><button className="login-btn"> Admin</button></Link>
+              <Link to="/signup"><button className="signup-btn">Sign up</button></Link>
+
             </div>
           </div>
-          <div className="form-content-2" >
-            <form onSubmit={e => e.preventDefault()} className="login-form">
+          <div className="login-body">
+            <div className="login-form home-divs">
+              <form onSubmit={e => e.preventDefault()}>
+                <h1 className="welcome">Log in</h1>
+                <div className="form-inputs">
+                  <label className="form-label">Username: </label>
+                  <input className="form-input" type="text" value={inputValue} onChange={evt => setValue(evt.target.value)} placeholder="Enter your username"></input>
+                </div>
 
-              <h1 className="welcome">Log in</h1>
-              <div className="form-inputs">
-                <label className="form-label">Username </label>
-                <input className="form-input" type="text" value={inputValue} onChange={evt => setValue(evt.target.value)} placeholder="Enter your username"></input>
-              </div>
+                <div className="form-inputs">
+                  <label className="form-label">Password: </label>
+                  <input className="form-input" type="password" value={passValue} onChange={evt => setPassValue(evt.target.value)} placeholder="Enter your password"></input>
+                </div>
 
-              <div className="form-inputs">
-                <label className="form-label">Password </label>
-                <input className="form-input" type="password" value={passValue} onChange={evt => setPassValue(evt.target.value)} placeholder="Enter your password"></input>
-              </div>
+                <button className="login-btn-2" onClick={login}>Log in</button>
+                <div id="forgot-password">
+                  <Link to="/recover">Forgot password?</Link>
+                </div>
 
-              <button className="login-btn-2" onClick={login}>Log in</button>
-              <div id="forgot-password">
-                <Link to="/recover">Forgot password?</Link>
-              </div>
+                <p className="sign-up-bottom">
+                  Don't have an account yet? <br />
+                  <Link id="sign-up" to="/signup">Sign up here</Link>
+                </p>
 
-              <p className="sign-up-bottom">
-                Don't have an account yet? <br />
-                <Link id="sign-up" to="/signup">Sign up here</Link>
-              </p>
-
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
-      }
+        </div>}
 
-      {users !== null && edit === false && users.state === false &&
+      {users !== null && edit === false && users.state === false && reportList === false &&
 
         <div>
 
@@ -334,6 +351,7 @@ export default function Login() {
           <div className="userpage">
 
             <div>
+
               <Profile
                 username={users.name + " " + users.surname}
                 reportTitle={reportTitle}
@@ -341,43 +359,86 @@ export default function Login() {
                 newreport={newreport}
                 setnewreport={e => setnewreport(e.target.value)}
                 addReport={addReport}
+                reportList={() => setreportList(true)}
+                setEdittrue={() => setEdit(true)}
               />
-              <div className="allreports">
-                {arr !== null && arr.map((el) => el.display === true && <div className="reports"><li key={el.username} className="reportlist">
-                  <div>
-                    <h3>{el.title}</h3>{el.report}
+
+
+            </div>
+          </div>
+        </div>
+      }
+      {reportList === true && users !== null && edit === false &&
+
+        <div>
+          <Header />
+          <div className="userpage">
+            <div className="container-myreports">
+              <div className="nav-item wrapper-1">
+                <ul class="nav flex-column" id="nav-elements" className="nav-items">
+                  <li class="nav-item" id="nav-element" className="nav-item">
+                    <Link class="nav-link active" aria-current="page" to="#" onClick={() => setreportList(false)}>Add Report</Link>
+                  </li>
+                  <li class="nav-item" id="nav-element" className="nav-item add-report">
+                    <Link class="nav-link" to="#" >My Reports</Link>
+                  </li>
+                  <li class="nav-item" id="nav-element" className="nav-item">
+                    <Link class="nav-link" to="#" onClick={() => setEdit(true)}>Settings</Link>
+                  </li>
+                </ul>
+              </div>
+              <div class="vl"></div>
+              <div className="wrapper-2-myreports">
+                {arr !== null && arr.map((el) => <div className="reports">{el.display === true && <li key={el.username} className="reportlist">
+                  <div className="report-container">
+                    {el.canceled === false && <Button
+                      onClick={() => { el.displayEdit = true; fetchData(); handleClickOpen(); setreport2title(el.title); setreport2(el.report) }}
+                      type="button"
+                      className="edit-btn"
+                      id="edit-btn"
+                    >
+                      <AiFillEdit />
+                    </Button>}
+                    <h3>{el.title}</h3>
+
+                    <div className="report-scrollable">{el.report}</div>
                   </div>
                   <br />
                   {el.canceled === false ?
                     <div>
-                      <button onClick={() => { el.displayEdit = !el.displayEdit; fetchData() }} className="editreport">Edit</button>
+
                       {el.displayEdit &&
                         <div>
-                          <input
-                            type="text"
-                            value={report2title}
-                            onChange={e => setreport2title(e.target.value)}
-                            placeholder="Edited title"
-                          />
-                          <textarea
-                            value={report2}
-                            onChange={(e) => setreport2(e.target.value)}
-                            placeholder="Edited report"
-                            maxLength="4000"
-                          />
-                          <button onClick={() => { reportedit(el.id); el.displayEdit = !el.displayEdit }}>Submit</button></div>
+                          <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+
+                          >
+                            <DialogTitle id="alert-dialog-title">
+                              <textarea className="form-input edit-title-input" value={report2title} onChange={e => setreport2title(e.target.value)}>{el.title}</textarea>
+                            </DialogTitle>
+                            <DialogContent className="dialog-content">
+                              <DialogContentText id="alert-dialog-description">
+                                <textarea id="edit-report-input" className="form-input edit-report-input" value={report2} onChange={(e) => setreport2(e.target.value)}>{el.report}</textarea>
+                              </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                              <Button onClick={() => { reportedit(el.id); el.displayEdit = !el.displayEdit; handleClose() }} autoFocus>
+                                Save changes
+                              </Button>
+                            </DialogActions>
+                          </Dialog>
+                        </div>
                       }
                       <button
                         onClick={() => cancelReport(el.id)}
                         className="cancelreport"
                         value={el.id}>Cancel report</button>
                     </div> :
-                    <button className="cancelreport" disabled>Canceled</button>}</li></div>)}
+                    <button className="cancelreport" disabled>Canceled</button>}</li>}</div>)}
               </div>
-            </div>
-            <div>
-
-
             </div>
           </div>
         </div>
@@ -387,16 +448,29 @@ export default function Login() {
         <div>
           <Header
             logout={() => window.location.reload()}
-            setEdittrue={() => setEdit(!edit)}
           />
+          <div className="nav-item wrapper-1">
+                <ul class="nav flex-column" id="nav-elements" className="nav-items">
+                  <li class="nav-item" id="nav-element" className="nav-item">
+                    <Link class="nav-link" to="#" onClick={() => {setreportList(false);setEdit(false)}}>Add Report</Link>
+                  </li>
+                  <li class="nav-item" id="nav-element" className="nav-item">
+                    <Link class="nav-link" to="#" onClick={()=>{setEdit(false);setreportList(true)}}>My Reports</Link>
+                  </li>
+                  <li class="nav-item" id="nav-element" className="nav-item add-report">
+                    <Link class="nav-link active"  aria-current="page" to="#">Settings</Link>
+                  </li>
+                </ul>
+              </div>
+              <div class="vl" style={{'height':'90%','marginTop':'10vh'}}></div>
           <div className="edit-form">
             <Image
               getImg={users.base64 ? "data:image/jpeg;base64," + users.base64 : profileicon}
-              PostImg={imgbtn}
               handleFileInputChange={handleFileInputChange} />
+              {base64URL !== "" && <button onClick={imgbtn} className="uploadpic">Upload</button>}
             <div className="edit-profile">
               <EditUser
-                newname={users.name.parse}
+                newname={newname}
                 setnewname={e => setnewname(e.target.value)}
                 newsurname={newsurname}
                 setnewsurname={e => setnewsurname(e.target.value)}
@@ -420,19 +494,18 @@ export default function Login() {
 
               }
             </div>
-          </div>
-        </div>
+          </div></div>
       }
       {users !== null && edit === false && users.state === true &&
-      <div>
-      <div className=" header">
-      <a href="/" className="home">Whistleblowing</a>
-      <div className="header-right">
-        <a className="login-btn" href="/login">Log in</a>
-        <a className="signup-btn" href="/signup">Sign up</a>
-      </div>
-    </div>
-        <div className="disabled"><div><h1>Sorry your account is disabled!</h1></div></div></div>}
+        <div>
+          <div className=" header">
+            <a href="/" className="home">Whistleblowing</a>
+            <div className="header-right">
+              <a className="login-btn" href="/login">Log in</a>
+              <a className="signup-btn" href="/signup">Sign up</a>
+            </div>
+          </div>
+          <div className="disabled"><div><h1>Sorry your account is disabled!</h1></div></div></div>}
 
     </div>
 

@@ -42,16 +42,11 @@
 .reportlist {
     list-style: none;
     padding: 30px;
-    max-width: 250px;
+    /* max-width: 250px; */
 }
 
 .allreports {
     max-width: 1100px;
-}
-
-.cancelreport {
-    margin-top: 15px;
-    ;
 }
 
 .login-signin {
