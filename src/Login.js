@@ -76,7 +76,6 @@ export default function Login() {
   const imgbtn = () => {
     PostImg();
     setbase64URL("");
-    setEdit(false);
     alert("You have successfully uploaded your profile picture!");
     fetchData();
   }
