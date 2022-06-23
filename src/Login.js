@@ -482,7 +482,7 @@ export default function Login() {
                 oldsurname={users.surname}
                 oldemail={users.email}
                 updatebtn={updatebtn}
-                setEditfalseseteditpassfalse={() => { setEdit(false); seteditpass(false) }}
+                setEditfalseseteditpassfalse={() => { setEdit(false); seteditpass(false);setreportList(false) }}
               />
               {editpass === true &&
                 <Editpass
