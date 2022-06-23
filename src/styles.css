@@ -135,6 +135,7 @@ a {
   height: 150px;
   border-radius: 50%;
   border: 3px solid rgb(39, 39, 107);
+  margin-right: 23vw;
 }
 
 .uploadpic {
@@ -159,6 +160,18 @@ a {
   align-items: center;
 }
 
-.upload__pic{
-  transform: translate(-85px,-50px);  
+.upload__pic {
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(51.7vw, -3.6vw);
+  border-radius: 50%;
+  width: 33px;
+  height: 33px;
+  background-color: #cbddee;
+}
+
+.upload__pic i {
+  margin-left: 3px;
 }
