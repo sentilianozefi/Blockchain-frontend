@@ -11,7 +11,7 @@ export default function Signup() {
   const [username, setUsername] = useForm();
   const [password, setPassword] = useForm();
   const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-  const mailformat =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const [users, setUsers] = useState(null);
 
 
@@ -35,14 +35,14 @@ export default function Signup() {
           alert("Existing username!");
           //throw new Error(res.status);
         }
-        else if (res.ok){
+        else if (res.ok) {
           res.json();
           alert("You have signed up successfully! Please go to the login page.");
         }
       })
       .then((res) => {
         console.log(res);
-       // setUsers((prevUsers) => [...prevUsers, res]);
+        // setUsers((prevUsers) => [...prevUsers, res]);
 
       });
   };
@@ -55,12 +55,12 @@ export default function Signup() {
     else if (!strongRegex.test(password)) {
       alert("Password does not meet the conditions!");
     }
-    else if(!email.match(mailformat)){
+    else if (!email.match(mailformat)) {
       alert("Invalid email address!");
     }
     else {
       addUser();
-      
+
     }
   };
 

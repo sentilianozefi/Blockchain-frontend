@@ -7,7 +7,7 @@ export default function EditUser(props) {
 
     return (
         <div className="data-form">
-           
+
             <form onSubmit={e => e.preventDefault()}>
 
                 <div class="mb-3" className="form-inputs">

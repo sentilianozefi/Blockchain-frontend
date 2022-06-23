@@ -16,7 +16,7 @@ root.render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-      <Route
+        <Route
           path="respas/:token"
           element={
             <>

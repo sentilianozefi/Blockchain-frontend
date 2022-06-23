@@ -10,15 +10,17 @@ export default function Recoverpassword() {
   const generateToken = () => {
     fetch("http://192.168.70.108:8080/generatetoken/" + username)
       .then(res => {
-        if (!res.ok) { 
-          alert("Incorrect username!") }
-        else {res.json()
+        if (!res.ok) {
+          alert("Incorrect username!")
+        }
+        else {
+          res.json()
           alert("Please check your e-mail!")
-      }
+        }
       })
       .then((json) =>
         settoken(json))
-    
+
   }
 
   return (
@@ -35,12 +37,12 @@ export default function Recoverpassword() {
           <div className="form-recover-password">
             <h1>FORGOT PASSWORD?</h1>
             <p>Please enter your username below and we will send you information to recover your account</p>
-            
-            <br /> 
+
+            <br />
             <div>
               <input class="form-control" type="text" placeholder="Username" value={username} onChange={(e) => setusername(e.target.value)} />
-              <br></br> 
-            <button onClick={generateToken} className = "login-btn-2">Get recovery link</button>
+              <br></br>
+              <button onClick={generateToken} className="login-btn-2">Get recovery link</button>
             </div>
           </div>
 

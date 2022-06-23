@@ -9,7 +9,7 @@ export default function Profile(props) {
   return (
     <div className="container">
       <div className="nav-item wrapper-1">
-         <ul class="nav flex-column" id="nav-elements" className="nav-items">
+        <ul class="nav flex-column" id="nav-elements" className="nav-items">
           <li class="nav-item" id="nav-element" className="nav-item add-report">
             <Link class="nav-link active" aria-current="page" to="#">Add Report</Link>
           </li>

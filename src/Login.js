@@ -74,11 +74,11 @@ export default function Login() {
       })
   }
   const imgbtn = () => {
-      PostImg();
-      setbase64URL("");
-      setEdit(false);
-      alert("You have successfully uploaded your profile picture!");
-      fetchData();
+    PostImg();
+    setbase64URL("");
+    setEdit(false);
+    alert("You have successfully uploaded your profile picture!");
+    fetchData();
   }
 
 
@@ -450,24 +450,24 @@ export default function Login() {
             logout={() => window.location.reload()}
           />
           <div className="nav-item wrapper-1">
-                <ul class="nav flex-column" id="nav-elements" className="nav-items">
-                  <li class="nav-item" id="nav-element" className="nav-item">
-                    <Link class="nav-link" to="#" onClick={() => {setreportList(false);setEdit(false)}}>Add Report</Link>
-                  </li>
-                  <li class="nav-item" id="nav-element" className="nav-item">
-                    <Link class="nav-link" to="#" onClick={()=>{setEdit(false);setreportList(true)}}>My Reports</Link>
-                  </li>
-                  <li class="nav-item" id="nav-element" className="nav-item add-report">
-                    <Link class="nav-link active"  aria-current="page" to="#">Settings</Link>
-                  </li>
-                </ul>
-              </div>
-              <div class="vl" style={{'height':'90%','marginTop':'10vh'}}></div>
+            <ul class="nav flex-column" id="nav-elements" className="nav-items">
+              <li class="nav-item" id="nav-element" className="nav-item">
+                <Link class="nav-link" to="#" onClick={() => { setreportList(false); setEdit(false) }}>Add Report</Link>
+              </li>
+              <li class="nav-item" id="nav-element" className="nav-item">
+                <Link class="nav-link" to="#" onClick={() => { setEdit(false); setreportList(true) }}>My Reports</Link>
+              </li>
+              <li class="nav-item" id="nav-element" className="nav-item add-report">
+                <Link class="nav-link active" aria-current="page" to="#">Settings</Link>
+              </li>
+            </ul>
+          </div>
+          <div class="vl" style={{ 'height': '90%', 'marginTop': '10vh' }}></div>
           <div className="edit-form">
             <Image
               getImg={users.base64 ? "data:image/jpeg;base64," + users.base64 : profileicon}
               handleFileInputChange={handleFileInputChange} />
-              {base64URL !== "" && <button onClick={imgbtn} className="uploadpic">Upload</button>}
+            {base64URL !== "" && <button onClick={imgbtn} className="uploadpic">Upload</button>}
             <div className="edit-profile">
               <EditUser
                 newname={newname}
@@ -482,7 +482,7 @@ export default function Login() {
                 oldsurname={users.surname}
                 oldemail={users.email}
                 updatebtn={updatebtn}
-                setEditfalseseteditpassfalse={() => { setEdit(false); seteditpass(false);setreportList(false) }}
+                setEditfalseseteditpassfalse={() => { setEdit(false); seteditpass(false); setreportList(false) }}
               />
               {editpass === true &&
                 <Editpass

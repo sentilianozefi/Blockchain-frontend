@@ -9,7 +9,7 @@
     position: absolute;
 }
 
-.title{
+.title {
     width: 700px;
     height: 50px;
     margin: 10px 70px;
@@ -26,12 +26,12 @@
 
 .vl {
     height: 95%;
-  width: 0.9px;
-  background: gray;
-  top: 15px;
-  bottom: 0;
-  position: absolute;
-  left: 15vw;
+    width: 0.9px;
+    background: gray;
+    top: 15px;
+    bottom: 0;
+    position: absolute;
+    left: 15vw;
 }
 
 .wrapper-1 {
@@ -54,42 +54,42 @@
 
 #nav-element {
     font-family: 'Didact Gothic', sans-serif;
-    
+
 }
 
-#nav-elements{
+#nav-elements {
     width: 20vw;
 }
 
 
-.nav-items{
+.nav-items {
     color: black;
     list-style-type: none;
-    margin-top: 50px; 
+    margin-top: 50px;
 }
 
 
-.nav-item{
+.nav-item {
     margin: 10px;
 }
 
-.add-report{
+.add-report {
     color: rgb(109, 109, 109);
 }
 
-.container-myreports{
+.container-myreports {
     padding-left: 12px;
 }
 
-.wrapper-2-myreports{
+.wrapper-2-myreports {
     margin-top: -100px;
-    width: 85vw; 
+    width: 85vw;
     float: right;
     margin-left: 4vw;
 }
 
 
-.edit-title-input{
+.edit-title-input {
     width: 700px;
     height: 50px;
     margin: 10px 70px;
@@ -100,10 +100,10 @@
     font-size: 20px;
     resize: none;
     padding: 10px;
-    overflow:hidden;
+    overflow: hidden;
 }
 
-.edit-report-input{
+.edit-report-input {
     width: 700px;
     height: 350px;
     margin: 10px 70px;
@@ -116,13 +116,15 @@
     padding: 10px;
 }
 
-#edit-report-input{
+#edit-report-input {
     height: 300px;
 }
 
-#edit-btn{
+#edit-btn {
     color: black;
 }
-.edit_user_page{
-    background: #efeff0;;
+
+.edit_user_page {
+    background: #efeff0;
+    ;
 }

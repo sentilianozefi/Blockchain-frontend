@@ -77,7 +77,8 @@
   color: rgb(39, 39, 107);
   box-shadow: 3px 4px 0px 0px #bcbdbe;
 }
-.savepass{
+
+.savepass {
   border: solid rgb(39, 39, 107);
   border-radius: 14px;
   padding: 5px 15px;
@@ -135,7 +136,8 @@ a {
   border-radius: 50%;
   border: 3px solid rgb(39, 39, 107);
 }
-.uploadpic{
+
+.uploadpic {
   color: white;
   background: rgb(39, 39, 107);
   border: rgb(39, 39, 107);
@@ -144,16 +146,19 @@ a {
   box-shadow: 3px 4px 0px 0px #bcbdbe;
   border: solid rgb(39, 39, 107);
 }
+
 .login-link-at-signup {
   color: rgb(50, 156, 255)
 }
-.disabled{
+
+.disabled {
   display: flex;
   background: #efeff0;
   height: 90vh;
   justify-content: center;
   align-items: center;
 }
+
 /* .upload__pic{
   transform: translate(-5vw,-5vh);  
 } */
