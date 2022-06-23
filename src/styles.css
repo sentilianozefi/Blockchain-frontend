@@ -170,6 +170,7 @@ a {
   width: 33px;
   height: 33px;
   background-color: #cbddee;
+  cursor: pointer;
 }
 
 .upload__pic i {

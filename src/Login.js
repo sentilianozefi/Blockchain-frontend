@@ -467,7 +467,7 @@ export default function Login() {
             <Image
               getImg={users.base64 ? "data:image/jpeg;base64," + users.base64 : profileicon}
               handleFileInputChange={handleFileInputChange} />
-            {base64URL !== "" && <button style={{'transform':'translate(-10px,-90px)'}} onClick={imgbtn} className="uploadpic">Upload</button>}
+            {base64URL !== "" && <button style={{'transform':'translate(-10px,-130px)'}} onClick={imgbtn} className="uploadpic">Upload</button>}
             <div className="edit-profile">
               <EditUser
                 newname={newname}
