@@ -152,6 +152,13 @@ export default function Login() {
         'question'
       )
     }
+    else if(reportTitle === ""){
+      Swal.fire(
+        'Please enter the title!',
+        "",
+        'question'
+      )
+    }
     else {
       createReport();
       setreportTitle("");
