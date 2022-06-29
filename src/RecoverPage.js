@@ -11,6 +11,7 @@ export default function Recover() {
 
     const [newPassword, setnewPassword] = useState("");
     const [confirmpass, setconfirmpass] = useState("");
+    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 
     let params = useParams();
 
@@ -50,6 +51,13 @@ export default function Recover() {
                 text: '',
               })
         }
+        else if (!strongRegex.test(newPassword)) {
+            Swal.fire({
+              icon: 'error',
+              title: '\n New password does not meet the conditions! \n Remember: Password must contain at least 8 characters including: \n An uppercase letter, a number and a special character!',
+              text: '',
+            });
+          }
         else
             resetpass();
     }
