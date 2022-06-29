@@ -76,12 +76,13 @@ export default function Login() {
   }
   const imgbtn = () => {
     PostImg();
+    setbase64URL("");
     Swal.fire(
       'Success!',
       'You successfully added a new profile picture!',
       'success'
     );
-    setbase64URL("");
+    fetchData();
     fetchData();
   }
 
