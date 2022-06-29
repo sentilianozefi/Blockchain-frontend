@@ -332,7 +332,6 @@ export default function Login() {
 
   const reportedit = (id) => {
     if (report2 === "" || report2title === "") {
-      alert("You can't submit an empty report or an empty title!")
       Swal.fire(
         'You can not submit an empty report or an empty title!',
         '',
