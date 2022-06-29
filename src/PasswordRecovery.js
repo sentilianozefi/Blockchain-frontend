@@ -32,6 +32,19 @@ export default function Recoverpassword() {
 
   }
 
+  const getLink = () =>{
+    if(username === ""){
+      Swal.fire({
+        icon: 'question',
+        title: 'Please enter your username!',
+        text: '',
+      })
+    }
+    else{
+      generateToken();
+    }
+  }
+
   return (
     <div>
       <div className=" header">
@@ -51,7 +64,7 @@ export default function Recoverpassword() {
             <div>
               <input class="form-control" type="text" placeholder="Username" value={username} onChange={(e) => setusername(e.target.value)} />
               <br></br>
-              <button onClick={generateToken} className="login-btn-2">Get recovery link</button>
+              <button onClick={getLink} className="login-btn-2">Get recovery link</button>
             </div>
           </div>
 
