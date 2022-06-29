@@ -89,7 +89,7 @@
     padding: 10px;
     border-radius: 10px;
     border: 2px solid rgb(209, 214, 214);
-    box-shadow: 8px 8px rgb(163, 227, 248);
+    box-shadow: 8px 8px 10px rgb(163, 227, 248);
 }
 
 .adminUsersList {
@@ -161,7 +161,7 @@
     width: 650px;
     border-radius: 10px;
     border: 2px solid rgb(209, 214, 214);
-    box-shadow: 8px 8px rgb(163, 227, 248);
+    box-shadow: 8px 8px 10px rgb(163, 227, 248);
     display: flex;
     gap: 50px;
     height: 200px;
