@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom"
 import "./PasswordRecovery.css"
 import "./Forms.css"
+import  Swal from 'sweetalert2';
 
 export default function ChangeUserPass() {
   const [newpass, setnewpass] = useState("");
@@ -29,14 +30,26 @@ export default function ChangeUserPass() {
   }
   const passwordbtn = () => {
     if (newpass === "") {
-      alert("Password can not be empty!")
+      Swal.fire(
+        'Password can not be empty!',
+        "",
+        'question'
+      )
     }
     else if (!strongRegex.test(newpass)) {
-      alert("\n New password does not meet the conditions! \n Remember: Password must contain at least 8 characters including: \n An uppercase letter, a number and a special character!");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '\n New password does not meet the conditions! \n Remember: Password must contain at least 8 characters including: \n An uppercase letter, a number and a special character!',
+      });
     }
     else {
       adminresetpass();
-      alert("Password updated successfully!");
+      Swal.fire(
+        'Success!',
+        'Password updated successfully!',
+        'success'
+      );
     }
   }
 

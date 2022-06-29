@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import "./styles.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from './useForm';
+import  Swal from 'sweetalert2';
 
 
 export default function Signup() {
@@ -32,31 +33,46 @@ export default function Signup() {
     })
       .then((res) => {
         if (!res.ok) {
-          alert("Existing username!");
+          Swal.fire({
+            icon: 'error',
+            title: 'Existing username!',
+            text: '',
+          });
           //throw new Error(res.status);
         }
         else if (res.ok) {
           res.json();
-          alert("You have signed up successfully! Please go to the login page.");
+          Swal.fire(
+            'Success!',
+            'You have signed up successfully! Please go to the login page.',
+            'success'
+          );
         }
       })
-      .then((res) => {
-        console.log(res);
-        // setUsers((prevUsers) => [...prevUsers, res]);
-
-      });
   };
 
   const submit = () => {
 
     if (name === '' || email === '' || password === '' || surname === '' || username === '') {
-      alert("One or more fields is empty");
+      Swal.fire(
+        'One or more fields are empty!',
+        "",
+        'question'
+      );
     }
     else if (!strongRegex.test(password)) {
-      alert("Password does not meet the conditions!");
+      Swal.fire({
+        icon: 'error',
+        title: 'Password does not meet the conditions!',
+        text: '',
+      });
     }
     else if (!email.match(mailformat)) {
-      alert("Invalid email address!");
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid email address!',
+        text: '',
+      });
     }
     else {
       addUser();

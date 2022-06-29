@@ -2,6 +2,7 @@ import "./PasswordRecovery.css"
 import "./styles.css"
 import "./Forms.css"
 import { useState } from 'react';
+import  Swal from 'sweetalert2';
 
 export default function Recoverpassword() {
   const [username, setusername] = useState("");
@@ -11,11 +12,19 @@ export default function Recoverpassword() {
     fetch("http://192.168.70.108:8080/generatetoken/" + username)
       .then(res => {
         if (!res.ok) {
-          alert("Incorrect username!")
+          Swal.fire({
+            icon: 'error',
+            title: 'Incorrect username!',
+            text: '',
+          })
         }
         else {
           res.json()
-          alert("Please check your e-mail!")
+          Swal.fire(
+            'Please check your e-mail!',
+            '',
+            'success'
+          )
         }
       })
       .then((json) =>

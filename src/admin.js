@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./styles.css";
 import "./Forms.css";
 import "./user.css";
+import  Swal from 'sweetalert2';
 
 export default function Admin() {
     const [admins, setadmins] = useState(null);
@@ -22,7 +23,11 @@ export default function Admin() {
         }).then(response => {
             response.json(),
                 getReport(el.username),
-                alert("You hid a report!")
+                Swal.fire(
+                    'Success!',
+                    'You hid a report!',
+                    'success'
+                  )
         }
         )
 
@@ -37,7 +42,11 @@ export default function Admin() {
         }).then(response => {
             response.json(),
                 getReport(el.username),
-                alert("You showed a report!")
+                Swal.fire(
+                    'Success!',
+                    'You showed a report!',
+                    'success'
+                  )
         }
         )
 
@@ -49,7 +58,11 @@ export default function Admin() {
 
         if (!res.ok) {
             setadmins(null);
-            alert("Wrong username or password!");
+            Swal.fire({
+                icon: 'error',
+                title: 'Wrong username or password!',
+                text: '',
+              });
         }
         else setadmins(json)
     }
@@ -62,7 +75,11 @@ export default function Admin() {
 
     const login = () => {
         if (admin === "" || adminpass === "") {
-            alert("One or more fields are empty")
+            Swal.fire(
+                'One or more fields are empty!',
+                "",
+                'question'
+              )
         }
         else {
             getUsers();
@@ -74,13 +91,23 @@ export default function Admin() {
     const disableuser = (el) => {
         fetch("http://192.168.70.108:8080/admindisableuser/" + admins.userName + "/" + el + "/" + true, {
             method: "POST"
-        }).then((res) => res.json()).then(alert("User has been disabled!"),
+        }).then((res) => res.json()).then(
+            Swal.fire(
+            'Success!',
+            'User has been disabled!',
+            'success'
+          ),
             getUsers())
     }
     const enableuser = (el) => {
         fetch("http://192.168.70.108:8080/admindisableuser/" + admins.userName + "/" + el + "/" + false, {
             method: "POST"
-        }).then((res) => res.json()).then(alert("User has been enabled!"),
+        }).then((res) => res.json()).then(
+            Swal.fire(
+            'Success!',
+            'User has been enabled!',
+            'success'
+          ),
             getUsers())
     }
 

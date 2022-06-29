@@ -19,6 +19,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import  Swal from 'sweetalert2';
 
 export default function Login() {
 
@@ -76,7 +77,6 @@ export default function Login() {
   const imgbtn = () => {
     PostImg();
     setbase64URL("");
-    alert("You have successfully uploaded your profile picture!");
     fetchData();
   }
 
@@ -120,7 +120,11 @@ export default function Login() {
       .then((res) => {
         res.json()
         getReport();
-        alert("You successfully added a new report.")
+        Swal.fire(
+          'Good job!',
+          'You successfully added a new report.',
+          'success'
+        );
 
       });
   };
@@ -142,7 +146,11 @@ export default function Login() {
 
   const addReport = () => {
     if (newreport === "") {
-      alert("Can not add empty report")
+      Swal.fire(
+        'Can not add empty report!',
+        "",
+        'question'
+      )
     }
     else {
       createReport();
@@ -172,7 +180,11 @@ export default function Login() {
 
     if (!res.ok) {
       setUsers(null);
-      alert("Wrong username or password!");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Wrong username or password!',
+      });
     }
     else setUsers(json);
 
@@ -180,7 +192,11 @@ export default function Login() {
 
   const login = () => {
     if (inputValue === "" || passValue === "") {
-      alert("One or more fields are empty")
+      Swal.fire(
+        'One or more fields are empty!',
+        "",
+        'question'
+      )
     }
     else {
       getReport();
@@ -211,11 +227,19 @@ export default function Login() {
   }
   const updatebtn = () => {
     if (newname === "" || newsurname === "" || newemail === "") {
-      alert("One or more fields is empty")
+      Swal.fire(
+        'One or more fields are empty!',
+        "",
+        'question'
+      )
     }
     else {
       update();
-      alert("Your data updated successfully!")
+      Swal.fire(
+        'Good job!',
+        'Your data updated successfully!',
+        'success'
+      );
       seteditpass(false);
       setEdit(false);
       fetchData();
@@ -239,17 +263,33 @@ export default function Login() {
   }
   const passwordbtn = () => {
     if (oldpassword === "" || newpassword === "") {
-      alert("One or more fields is empty")
+      Swal.fire(
+        'One or more fields are empty!',
+        "",
+        'question'
+      )
     }
     else if (oldpassword !== passValue) {
-      alert("Old password is wrong!")
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Old password is wrong!',
+      })
     }
     else if (!strongRegex.test(newpassword)) {
-      alert("New password does not meet the conditions!");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'New password does not meet the conditions!',
+      })
     }
     else {
       changepass();
-      alert("Password updated successfully!")
+      Swal.fire(
+        'Good job!',
+        'Password updated successfully!',
+        'success'
+      );
       seteditpass(false);
 
     }
@@ -262,12 +302,20 @@ export default function Login() {
       }
     }).then(response => {
       if (!response.ok) {
-        alert("Update time for this report has passed!");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Update time has passed!',
+        });
       }
       else {
         response.json();
         getReport();
-        alert("You successfully edited your report!");
+        Swal.fire(
+          'You successfully edited your report!',
+          '',
+          'success'
+        );
         setreport2("");
         setreport2title("");
       }
@@ -278,6 +326,11 @@ export default function Login() {
   const reportedit = (id) => {
     if (report2 === "" || report2title === "") {
       alert("You can't submit an empty report or an empty title!")
+      Swal.fire(
+        'You can not submit an empty report or an empty title!',
+        '',
+        'question'
+      )
     }
     else {
       editreport(id);

@@ -5,6 +5,8 @@ import { useState } from 'react';
 import "./PasswordRecovery.css";
 import "./styles.css";
 import "./Forms.css";
+import  Swal from 'sweetalert2';
+
 export default function Recover() {
 
     const [newPassword, setnewPassword] = useState("");
@@ -16,21 +18,37 @@ export default function Recover() {
         fetch("http://192.168.70.108:8080/respas/" + params.token + "/" + newPassword)
             .then(res => {
                 if (!res.ok) {
-                    alert("Token expired or wrong token!")
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Token has expired or wrong token!',
+                        text: '',
+                      })
                 }
                 else {
                     res.json()
-                    alert("Password saved!")
+                    Swal.fire(
+                        'Password saved!',
+                        '',
+                        'success'
+                      )
                 }
             })
     }
 
     const reset = () => {
         if (newPassword === "" || confirmpass === "") {
-            alert("One or more of the required fields is empty!")
+            Swal.fire(
+                'One or more of the required fields is empty!',
+                "",
+                'question'
+              )
         }
         else if (newPassword !== confirmpass) {
-            alert("Passwords do not match!")
+            Swal.fire({
+                icon: 'error',
+                title: 'Passwords do not match!',
+                text: '',
+              })
         }
         else
             resetpass();
