@@ -7,6 +7,7 @@ import  Swal from 'sweetalert2';
 export default function Recoverpassword() {
   const [username, setusername] = useState("");
   const [token, settoken] = useState(null);
+  const [btnstate, setbtnstate] = useState(true)
 
   const generateToken = () => {
     fetch("http://192.168.70.108:8080/generatetoken/" + username)
@@ -42,6 +43,7 @@ export default function Recoverpassword() {
     }
     else{
       generateToken();
+      setbtnstate(false);
     }
   }
 
@@ -64,7 +66,10 @@ export default function Recoverpassword() {
             <div>
               <input class="form-control" type="text" placeholder="Username" value={username} onChange={(e) => setusername(e.target.value)} />
               <br></br>
-              <button onClick={getLink} className="login-btn-2">Get recovery link</button>
+              {btnstate === true ?
+              <button onClick={getLink} className="login-btn-2">Get recovery link</button> : 
+              <button className="login-btn-2" disabled>E-mail sent</button>
+            }
             </div>
           </div>
 
