@@ -26,21 +26,6 @@
     margin-left: 70px;
 }
 
-
-.reports {
-    margin: 20px 30px;
-    box-sizing: border-box;
-    border: solid 0.5px gray;
-    border-radius: 10px;
-    font-family: 'Didact Gothic', sans-serif;
-    box-shadow: 3px 4px 0px 0px #bcbdbe;
-    background-color: #ffffff;
-    font-size: 16px;
-    resize: none;
-    width: 500px;
-    height: 300px;
-}
-
 .cancelreport {
     border: solid rgb(39, 39, 107);
     border-radius: 14px;
@@ -69,12 +54,6 @@
     height: 140px;
     overflow: auto;
 }
-
-
-/* .report-container{
-    width: 400px;
-    height: 200px;
-} */
 
 .edit-btn {
     float: right;
