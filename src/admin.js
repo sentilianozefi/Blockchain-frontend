@@ -179,7 +179,7 @@ export default function Admin() {
                                             <th>E-Mail</th>
                                             <th>Action</th>
                                         </tr>
-                                {users.filter((el) => filter === "" || el.userName.includes(filter)).map(el =>
+                                {users.filter((el) => filter === "" || el.userName.includes(filter) || el.name.includes(filter) || el.surname.includes(filter)).map(el =>
                                     
                                         <tr>
                                             <td><h6>{el.name}</h6></td>
