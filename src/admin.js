@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./styles.css";
 import "./Forms.css";
 import "./user.css";
-import  Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 export default function Admin() {
     const [admins, setadmins] = useState(null);
@@ -27,7 +27,7 @@ export default function Admin() {
                     'Success!',
                     'You hid a report!',
                     'success'
-                  )
+                )
         }
         )
 
@@ -46,7 +46,7 @@ export default function Admin() {
                     'Success!',
                     'You showed a report!',
                     'success'
-                  )
+                )
         }
         )
 
@@ -62,7 +62,7 @@ export default function Admin() {
                 icon: 'error',
                 title: 'Wrong username or password!',
                 text: '',
-              });
+            });
         }
         else setadmins(json)
     }
@@ -79,7 +79,7 @@ export default function Admin() {
                 'One or more fields are empty!',
                 "",
                 'question'
-              )
+            )
         }
         else {
             getUsers();
@@ -93,10 +93,10 @@ export default function Admin() {
             method: "POST"
         }).then((res) => res.json()).then(
             Swal.fire(
-            'Success!',
-            'User has been disabled!',
-            'success'
-          ),
+                'Success!',
+                'User has been disabled!',
+                'success'
+            ),
             getUsers())
     }
     const enableuser = (el) => {
@@ -104,10 +104,10 @@ export default function Admin() {
             method: "POST"
         }).then((res) => res.json()).then(
             Swal.fire(
-            'Success!',
-            'User has been enabled!',
-            'success'
-          ),
+                'Success!',
+                'User has been enabled!',
+                'success'
+            ),
             getUsers())
     }
 
@@ -170,7 +170,7 @@ export default function Admin() {
                             <input className="form-control" id="search-user" value={filter} onChange={(evt) => setfilter(evt.target.value)} type='search' placeholder='Search user' />
                         </div>
                         <div>
-                            <div className='adminUsersList'>
+                            {/* <div className='adminUsersList'>
                                 {users.filter((el) => filter === "" || el.userName.includes(filter))
                                     .map((el) => <div className='adminPageUsers'>
                                         <div>
@@ -191,6 +191,30 @@ export default function Admin() {
 
                                     </div>
                                     )}
+                            </div> */}
+                            <div>
+                            <table className='table'>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Surname</th>
+                                            <th>Username</th>
+                                            <th>E-Mail</th>
+                                            <th>Action</th>
+                                        </tr>
+                                {users.filter((el) => filter === "" || el.userName.includes(filter)).map(el =>
+                                    
+                                        <tr>
+                                            <td><h6>{el.name}</h6></td>
+                                            <td><h6>{el.surname}</h6></td>
+                                            <td><h6>{el.userName}</h6></td>
+                                            <td><h6>{el.email}</h6></td>
+                                            <td><button className='table-btn' onClick={() => { setReplist(true); getReport(el.userName) }}>Reports</button>
+                                                <button className='table-btn'><Link to={"/admin/reset/" + el.userName + "/" + admins.userName} target='_blank'>Reset password</Link></button>
+                                                {el.state === false ?
+                                                    <button className='table-btn' onClick={() => disableuser(el.userName)}>Disable user</button> :
+                                                    <button className='table-btn' onClick={() => enableuser(el.userName)}>Enable user</button>}</td>
+                                        </tr>
+                                    )}</table>
                             </div>
                         </div>
                     </div>

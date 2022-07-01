@@ -116,7 +116,7 @@
 #search-user {
     width: 250px;
     margin-top: 30px;
-    margin-left: 30px;
+    margin-left: 12vw;
 }
 
 .admin-body {
@@ -179,4 +179,40 @@
     display: flex;
     margin-left: 33%;
     align-items: center;
+}
+.table{
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 10px 10px 10px rgb(203, 224, 240);
+    width:75vw;
+    border: 2px solid white;
+    margin-left: 12vw;
+    margin-bottom: 5vh;
+}
+ th{
+    background-color: rgb(203, 224, 240);
+    font-weight: 1000;
+    border: 2px solid white;
+    border-top: none;
+    padding: 10px;
+}
+tr{
+    border-bottom: 2px solid #d9dadc;
+    padding: 10px;
+}
+td{
+    height:80px;
+}
+.table-btn {
+    border: 1px solid rgb(39, 39, 107);
+    border-radius: 14px;
+    padding: 5px 15px;
+    margin: auto 10px;
+    color: rgb(39, 39, 107);
+    cursor: pointer;
+}
+
+.table-btn a {
+    text-decoration: none;
+    color: rgb(39, 39, 107);
 }
