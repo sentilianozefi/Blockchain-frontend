@@ -89,30 +89,6 @@
     margin-bottom: -100px;
 }
 
-.adminPageUsers {
-    display: flex;
-    flex-direction: row;
-    margin: 30px;
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
-    border: 2px solid rgb(209, 214, 214);
-    box-shadow: 8px 8px 10px rgb(163, 227, 248);
-}
-
-.adminUsersList {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.adminbuttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-left: 20px;
-}
-
 #search-user {
     width: 250px;
     margin-top: 30px;

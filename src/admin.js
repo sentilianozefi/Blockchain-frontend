@@ -170,28 +170,6 @@ export default function Admin() {
                             <input className="form-control" id="search-user" value={filter} onChange={(evt) => setfilter(evt.target.value)} type='search' placeholder='Search user' />
                         </div>
                         <div>
-                            {/* <div className='adminUsersList'>
-                                {users.filter((el) => filter === "" || el.userName.includes(filter))
-                                    .map((el) => <div className='adminPageUsers'>
-                                        <div>
-                                            <h6>Username: </h6>
-                                            <h3>{el.userName}</h3>
-                                            <h6>Name: </h6>
-                                            <h4>{el.name}</h4>
-                                            <h6>Surname: </h6>
-                                            <h4>{el.surname}</h4>
-                                        </div>
-                                        <div className='adminbuttons'>
-                                            <button className='admin-btn' onClick={() => { setReplist(true); getReport(el.userName) }}>Reports</button>
-                                            <button className='admin-btn'> <Link to={"/admin/reset/" + el.userName + "/" + admins.userName} target='_blank'>Reset password</Link></button>
-                                            {el.state === false ?
-                                                <button className='admin-btn' onClick={() => disableuser(el.userName)}>Disable user</button> :
-                                                <button className='admin-btn' onClick={() => enableuser(el.userName)}>Enable user</button>}
-                                        </div>
-
-                                    </div>
-                                    )}
-                            </div> */}
                             <div>
                             <table className='table'>
                                         <tr>
