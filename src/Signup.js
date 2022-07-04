@@ -13,7 +13,6 @@ export default function Signup() {
   const [password, setPassword] = useForm();
   const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
   const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  const [users, setUsers] = useState(null);
 
 
   const addUser = () => {
