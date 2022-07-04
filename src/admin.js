@@ -177,7 +177,7 @@ export default function Admin() {
                                             <th>Surname</th>
                                             <th>Username</th>
                                             <th>E-Mail</th>
-                                            <th>Action</th>
+                                            <th>Take Action</th>
                                         </tr>
                                 {users.filter((el) => filter === "" || el.userName.includes(filter) || el.name.includes(filter) || el.surname.includes(filter)).map(el =>
                                     
