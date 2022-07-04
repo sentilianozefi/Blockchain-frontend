@@ -19,7 +19,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import  Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 export default function Login() {
 
@@ -158,7 +158,7 @@ export default function Login() {
         'question'
       )
     }
-    else if(reportTitle === ""){
+    else if (reportTitle === "") {
       Swal.fire(
         'Please enter the title!',
         "",
@@ -253,8 +253,9 @@ export default function Login() {
         'Your data updated successfully!',
         'success'
       );
-      seteditpass(false);
-      setEdit(false);
+      setnewname("");
+      setnewsurname("");
+      setnewemail("");
       fetchData();
 
     }
@@ -303,6 +304,8 @@ export default function Login() {
         'Password updated successfully!',
         'success'
       );
+      setoldpassword("");
+      setnewpassword("");
       seteditpass(false);
 
     }
@@ -409,13 +412,24 @@ export default function Login() {
 
           <Header
             logout={() => window.location.reload()}
-            setEdittrue={() => setEdit(true)}
           />
 
           <div className="userpage">
+            <div className="nav-item wrapper-1">
+              <ul class="nav flex-column" id="nav-elements" className="nav-items">
+                <li class="nav-item" id="nav-element" className="nav-item add-report">
+                  <Link class="nav-link active" aria-current="page" to="#">Add Report</Link>
+                </li>
+                <li class="nav-item" id="nav-element" className="nav-item">
+                  <Link class="nav-link" to="#" onClick={() => setreportList(true)}>My Reports</Link>
+                </li>
+                <li class="nav-item" id="nav-element" className="nav-item">
+                  <Link class="nav-link" to="#" onClick={() => setEdit(true)}>Settings</Link>
+                </li>
+              </ul>
+            </div>
 
             <div>
-
               <Profile
                 username={users.name + " " + users.surname}
                 reportTitle={reportTitle}
@@ -423,11 +437,7 @@ export default function Login() {
                 newreport={newreport}
                 setnewreport={e => setnewreport(e.target.value)}
                 addReport={addReport}
-                reportList={() => setreportList(true)}
-                setEdittrue={() => setEdit(true)}
               />
-
-
             </div>
           </div>
         </div>
@@ -447,7 +457,7 @@ export default function Login() {
                     <Link class="nav-link" to="#" >My Reports</Link>
                   </li>
                   <li class="nav-item" id="nav-element" className="nav-item">
-                    <Link class="nav-link" to="#" onClick={() => setEdit(true)}>Settings</Link>
+                    <Link class="nav-link" to="#" onClick={() => { setEdit(true); setreportList(false) }}>Settings</Link>
                   </li>
                 </ul>
               </div>
@@ -531,7 +541,7 @@ export default function Login() {
             <Image
               getImg={users.base64 ? "data:image/jpeg;base64," + users.base64 : profileicon}
               handleFileInputChange={handleFileInputChange} />
-            {base64URL !== "" && <button style={{'transform':'translate(-10px,-130px)'}} onClick={imgbtn} className="uploadpic">Upload</button>}
+            {base64URL !== "" && <button style={{ 'transform': 'translate(-10px,-130px)' }} onClick={imgbtn} className="uploadpic">Upload</button>}
             <div className="edit-profile">
               <EditUser
                 newname={newname}
@@ -546,7 +556,7 @@ export default function Login() {
                 oldsurname={users.surname}
                 oldemail={users.email}
                 updatebtn={updatebtn}
-                setEditfalseseteditpassfalse={() => { setEdit(false); seteditpass(false); setreportList(false) }}
+                setEditfalseseteditpassfalse={() => { setEdit(false); seteditpass(false) }}
               />
               {editpass === true &&
                 <Editpass
@@ -558,7 +568,8 @@ export default function Login() {
 
               }
             </div>
-          </div></div>
+          </div>
+        </div>
       }
       {users !== null && edit === false && users.state === true &&
         <div>

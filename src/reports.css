@@ -46,8 +46,8 @@
 .report-body {
     align-items: center;
     justify-content: center;
-    margin-left: 10vw;
-    margin-top: -50px;
+    margin-left: -6vw;
+    margin-top: 10vh;
 }
 
 .report-scrollable {
