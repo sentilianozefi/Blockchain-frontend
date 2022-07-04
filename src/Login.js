@@ -447,7 +447,6 @@ export default function Login() {
         <div>
           <Header />
           <div className="userpage">
-            <div className="container-myreports">
               <div className="nav-item wrapper-1">
                 <ul class="nav flex-column" id="nav-elements" className="nav-items">
                   <li class="nav-item" id="nav-element" className="nav-item">
@@ -515,7 +514,6 @@ export default function Login() {
               </div>
             </div>
           </div>
-        </div>
       }
       {edit === true &&
 
