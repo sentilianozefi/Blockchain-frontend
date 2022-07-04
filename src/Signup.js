@@ -35,7 +35,7 @@ export default function Signup() {
         if (!res.ok) {
           Swal.fire({
             icon: 'error',
-            title: 'Existing username!',
+            title: 'Existing username or e-mail!',
             text: '',
           });
           //throw new Error(res.status);
