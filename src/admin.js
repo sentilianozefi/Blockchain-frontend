@@ -171,16 +171,16 @@ export default function Admin() {
                         </div>
                         <div>
                             <div>
-                            <table className='table'>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Surname</th>
-                                            <th>Username</th>
-                                            <th>E-Mail</th>
-                                            <th>Take Action</th>
-                                        </tr>
-                                {users.filter((el) => filter === "" || el.userName.includes(filter) || el.name.includes(filter) || el.surname.includes(filter)).map(el =>
-                                    
+                                <table className='table'>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Surname</th>
+                                        <th>Username</th>
+                                        <th>E-Mail</th>
+                                        <th>Take Action</th>
+                                    </tr>
+                                    {users.filter((el) => filter === "" || el.userName.includes(filter) || el.name.includes(filter) || el.surname.includes(filter)).map(el =>
+
                                         <tr>
                                             <td><h6>{el.name}</h6></td>
                                             <td><h6>{el.surname}</h6></td>
@@ -198,22 +198,25 @@ export default function Admin() {
                     </div>
                 </div>
             }
-            {admins !== null && replist === true && <div className='admin__reports'>
-                {reports.length !== 0 ? reports.map((el) => <div className='admin-pg-report'>
-                    <div>
-                        <p>Author: {el.username}</p>
-                        <p>Date created: {el.creationdate}</p>
-                        <p>Canceled: {el.canceled.toString()}</p>
-                        {el.display === true ?
-                            <button className='admin-btn' value={el.id} onClick={() => hidereport(el)}>Hide report</button> :
-                            <button className='admin-btn' value={el.id} onClick={() => showreport(el)}>Show report</button>}
-                    </div>
-                    <div>
-                        <h6>{el.title}</h6>
-                        <textarea style={{ 'width': '300px' }} value={el.report} /></div>
-                </div>) : <div className='no-reports'><h1>This user has no reports!</h1></div>}
-                <button className='edit-btns' id="admin-close-btn" onClick={() => setReplist(false)}>Close</button>
-            </div>
+            {admins !== null && replist === true &&
+            <div className='admin_reports'>
+                <div className='admin_reports_container'>
+                    {reports.length !== 0 ? reports.map((el) => <div className='admin-pg-report'>
+                        <div>
+                            <p>Author: {el.username}</p>
+                            <p>Date created: {el.creationdate}</p>
+                            <p>Canceled: {el.canceled.toString()}</p>
+                            {el.display === true ?
+                                <button className='admin-btn' value={el.id} onClick={() => hidereport(el)}>Hide report</button> :
+                                <button className='admin-btn' value={el.id} onClick={() => showreport(el)}>Show report</button>}
+                        </div>
+                        <div>
+                            <h6>{el.title}</h6>
+                            <textarea style={{ 'width': '300px' }} value={el.report} /></div>
+                    </div>) : <div className='no-reports'><h1>This user has no reports!</h1></div>}
+                    <button className='edit-btns' id="admin-close-btn" onClick={() => setReplist(false)}>Close</button>
+                </div>
+                </div>
             }
         </div>
     )
