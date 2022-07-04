@@ -17,7 +17,7 @@
 
 .edit-pass {
     margin-top: 120px;
-    margin-left: 41%;
+    margin-left: 42%;
 }
 
 .edit-profile {
@@ -155,7 +155,8 @@
 
 .no-reports {
     display: flex;
-    margin-left: 33%;
+    margin-left: 35%;
+    margin-top: 20%;
     align-items: center;
 }
 .table{
