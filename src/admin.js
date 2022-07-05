@@ -212,7 +212,7 @@ export default function Admin() {
                         </div>
                         <div>
                             <h6>{el.title}</h6>
-                            <textarea style={{ 'width': '300px' }} value={el.report} /></div>
+                            <textarea className='report-scrollable-2' value={el.report} /></div>
                     </div>) : <div className='no-reports'><h1>This user has no reports!</h1></div>}
                     <button className='edit-btns' id="admin-close-btn" onClick={() => setReplist(false)}>Close</button>
                 </div>

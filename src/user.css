@@ -154,6 +154,15 @@
     height: 200px;
     margin: 15px 30px;
 }
+.report-scrollable-2{
+    height: 140px;
+    width:300px;
+    overflow: auto;
+    resize: none;
+    border-radius: 10px;
+    padding: 10px;
+    border: 2px solid rgb(201, 211, 219);
+}
 
 .no-reports {
     display: flex;
