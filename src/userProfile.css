@@ -14,7 +14,7 @@
     height: 50px;
     margin: 10px 70px;
     box-sizing: border-box;
-    border: solid 0.5px gray;
+    border: solid 2px rgb(178, 175, 175);
     border-radius: 10px;
     font-family: 'Didact Gothic', sans-serif;
     box-shadow: 3px 4px 0px 0px #bcbdbe;

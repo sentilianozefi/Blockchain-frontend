@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import "./styles.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from './useForm';
-import  Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 
 export default function Signup() {

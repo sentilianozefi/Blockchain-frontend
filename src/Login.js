@@ -447,74 +447,74 @@ export default function Login() {
         <div>
           <Header />
           <div className="userpage">
-              <div className="nav-item wrapper-1">
-                <ul class="nav flex-column" id="nav-elements" className="nav-items">
-                  <li class="nav-item" id="nav-element" className="nav-item">
-                    <Link class="nav-link active" aria-current="page" to="#" onClick={() => setreportList(false)}>Add Report</Link>
-                  </li>
-                  <li class="nav-item" id="nav-element" className="nav-item add-report">
-                    <Link class="nav-link" to="#" >My Reports</Link>
-                  </li>
-                  <li class="nav-item" id="nav-element" className="nav-item">
-                    <Link class="nav-link" to="#" onClick={() => { setEdit(true); setreportList(false) }}>Settings</Link>
-                  </li>
-                </ul>
-              </div>
-              <div class="vl"></div>
-              <div className="wrapper-2-myreports">
-                {arr !== null && arr.map((el) => <div className="reports">{el.display === true && <li key={el.username} className="reportlist">
-                  <div className="report-container">
-                    {el.canceled === false && <Button
-                      onClick={() => { el.displayEdit = true; fetchData(); handleClickOpen(); setreport2title(el.title); setreport2(el.report) }}
-                      type="button"
-                      className="edit-btn"
-                      id="edit-btn"
-                    >
-                      <AiFillEdit />
-                    </Button>}
-                    <code>{el.creationdate}</code><br></br><br></br>
-                    <h3>{el.title}</h3>
+            <div className="nav-item wrapper-1">
+              <ul class="nav flex-column" id="nav-elements" className="nav-items">
+                <li class="nav-item" id="nav-element" className="nav-item">
+                  <Link class="nav-link active" aria-current="page" to="#" onClick={() => setreportList(false)}>Add Report</Link>
+                </li>
+                <li class="nav-item" id="nav-element" className="nav-item add-report">
+                  <Link class="nav-link" to="#" >My Reports</Link>
+                </li>
+                <li class="nav-item" id="nav-element" className="nav-item">
+                  <Link class="nav-link" to="#" onClick={() => { setEdit(true); setreportList(false) }}>Settings</Link>
+                </li>
+              </ul>
+            </div>
+            <div class="vl"></div>
+            <div className="wrapper-2-myreports">
+              {arr !== null && arr.map((el) => <div className="reports">{el.display === true && <li key={el.username} className="reportlist">
+                <div className="report-container">
+                  {el.canceled === false && <Button
+                    onClick={() => { el.displayEdit = true; fetchData(); handleClickOpen(); setreport2title(el.title); setreport2(el.report) }}
+                    type="button"
+                    className="edit-btn"
+                    id="edit-btn"
+                  >
+                    <AiFillEdit />
+                  </Button>}
+                  <code>{el.creationdate}</code><br></br><br></br>
+                  <h3>{el.title}</h3>
 
-                    <div className="report-scrollable">{el.report}</div>
-                  </div>
-                  <br />
-                  {el.canceled === false ?
-                    <div>
+                  <div className="report-scrollable">{el.report}</div>
+                </div>
+                <br />
+                {el.canceled === false ?
+                  <div>
 
-                      {el.displayEdit &&
-                        <div>
-                          <Dialog
-                            open={open}
-                            onClose={handleClose}
-                            aria-labelledby="alert-dialog-title"
-                            aria-describedby="alert-dialog-description"
+                    {el.displayEdit &&
+                      <div>
+                        <Dialog
+                          open={open}
+                          onClose={handleClose}
+                          aria-labelledby="alert-dialog-title"
+                          aria-describedby="alert-dialog-description"
 
-                          >
-                            <DialogTitle id="alert-dialog-title">
-                              <textarea className="form-input edit-title-input" value={report2title} onChange={e => setreport2title(e.target.value)}>{el.title}</textarea>
-                            </DialogTitle>
-                            <DialogContent className="dialog-content">
-                              <DialogContentText id="alert-dialog-description">
-                                <textarea id="edit-report-input" className="form-input edit-report-input" value={report2} onChange={(e) => setreport2(e.target.value)}>{el.report}</textarea>
-                              </DialogContentText>
-                            </DialogContent>
-                            <DialogActions>
-                              <Button onClick={() => { reportedit(el.id); el.displayEdit = !el.displayEdit; handleClose() }} autoFocus>
-                                Save changes
-                              </Button>
-                            </DialogActions>
-                          </Dialog>
-                        </div>
-                      }
-                      <button
-                        onClick={() => cancelReport(el.id)}
-                        className="cancelreport"
-                        value={el.id}>Cancel report</button>
-                    </div> :
-                    <button className="cancelreport" disabled>Canceled</button>}</li>}</div>)}
-              </div>
+                        >
+                          <DialogTitle id="alert-dialog-title">
+                            <textarea className="form-input edit-title-input" value={report2title} onChange={e => setreport2title(e.target.value)}>{el.title}</textarea>
+                          </DialogTitle>
+                          <DialogContent className="dialog-content">
+                            <DialogContentText id="alert-dialog-description">
+                              <textarea id="edit-report-input" className="form-input edit-report-input" value={report2} onChange={(e) => setreport2(e.target.value)}>{el.report}</textarea>
+                            </DialogContentText>
+                          </DialogContent>
+                          <DialogActions>
+                            <Button onClick={() => { reportedit(el.id); el.displayEdit = !el.displayEdit; handleClose() }} autoFocus>
+                              Save changes
+                            </Button>
+                          </DialogActions>
+                        </Dialog>
+                      </div>
+                    }
+                    <button
+                      onClick={() => cancelReport(el.id)}
+                      className="cancelreport"
+                      value={el.id}>Cancel report</button>
+                  </div> :
+                  <button className="cancelreport" disabled>Canceled</button>}</li>}</div>)}
             </div>
           </div>
+        </div>
       }
       {edit === true &&
 
