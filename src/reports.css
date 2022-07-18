@@ -54,6 +54,10 @@
     height: 140px;
     overflow: auto;
 }
+.card-title{
+    height:40px;
+    overflow: auto;
+}
 
 .edit-btn {
     float: right;

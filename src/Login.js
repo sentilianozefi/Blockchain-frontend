@@ -339,6 +339,35 @@ export default function Login() {
     )
   }
 
+  // const checktime = (id) => {
+  //   console.log(fetch("http://192.168.70.108:8080/checkReportEssence/" + id, {
+  //     method: 'GET',
+  //     headers: {
+  //       "Content-type": "application/json; charset=UTF-8"
+  //     }
+  //   }).then(response => {
+  //     if (!response.ok) {
+  //       Swal.fire({
+  //         icon: 'error',
+  //         title: 'Oops...',
+  //         text: 'Update time has passed!',
+  //       });
+  //     }
+  //     console.log(response.ok)
+  //     return response.ok;
+  //  }
+  //   ))
+  // }
+
+  // const checkStatus = (el) => {
+  //   if(checktime(el.id)){ 
+  //     el.displayEdit = true;  
+  //     handleClickOpen(); 
+  //     setreport2title(el.title); 
+  //     setreport2(el.report); 
+  //     fetchData(); 
+  //   }
+  // }
   const reportedit = (id) => {
     if (report2 === "" || report2title === "") {
       Swal.fire(
@@ -473,7 +502,7 @@ export default function Login() {
                     <AiFillEdit />
                   </Button>}
                   <code>{el.creationdate}</code><br></br><br></br>
-                  <h3>{el.title}</h3>
+                  <h3 className="card-title">{el.title}</h3>
 
                   <div className="report-scrollable">{el.report}</div>
                 </div>
@@ -491,11 +520,23 @@ export default function Login() {
 
                         >
                           <DialogTitle id="alert-dialog-title">
-                            <textarea className="form-input edit-title-input" value={report2title} onChange={e => setreport2title(e.target.value)}>{el.title}</textarea>
+                            <textarea
+                              className="form-input edit-title-input"
+                              value={report2title}
+                              onChange={e => setreport2title(e.target.value)}
+                              maxLength="200"
+                            >{el.title}</textarea>
                           </DialogTitle>
                           <DialogContent className="dialog-content">
                             <DialogContentText id="alert-dialog-description">
-                              <textarea id="edit-report-input" className="form-input edit-report-input" value={report2} onChange={(e) => setreport2(e.target.value)}>{el.report}</textarea>
+                              <textarea
+                                id="edit-report-input"
+                                className="form-input edit-report-input"
+                                value={report2}
+                                onChange={(e) => setreport2(e.target.value)}
+                                maxLength="4000"
+                              >
+                                {el.report}</textarea>
                             </DialogContentText>
                           </DialogContent>
                           <DialogActions>

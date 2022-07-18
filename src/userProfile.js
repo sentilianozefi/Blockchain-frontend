@@ -18,8 +18,9 @@ export default function Profile(props) {
             type="text"
             value={props.reportTitle}
             onChange={props.setreportTitle}
-            placeholder="Enter the report title"
+            placeholder="Enter the report title(max. 50 characters)"
             className="title"
+            maxLength="50"
           />
           <br></br>
           <textarea
