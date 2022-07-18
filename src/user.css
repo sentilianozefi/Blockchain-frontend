@@ -107,7 +107,7 @@
     border: solid rgb(39, 39, 107);
     border-radius: 14px;
     padding: 5px 15px;
-    margin: auto 30px;
+    margin: 20px 120px;
     color: rgb(39, 39, 107);
     box-shadow: 3px 4px 0px 0px #bcbdbe;
     cursor: pointer;
@@ -145,23 +145,24 @@
 .admin-pg-report {
     background-color: white;
     padding: 10px;
-    width: 650px;
+    width: 400px;
     border-radius: 10px;
     border: 2px solid rgb(209, 214, 214);
     box-shadow: 8px 8px 5px rgb(203, 224, 240);
     display: flex;
-    gap: 50px;
-    height: 200px;
+    flex-direction: column;
+    gap: 30px;
+    height: 420px;
     margin: 15px 30px;
 }
 .report-scrollable-2{
     height: 140px;
-    width:300px;
+    width:370px;
     overflow: auto;
     resize: none;
     border-radius: 10px;
     padding: 10px;
-    border: 2px solid rgb(201, 211, 219);
+    border: 2px solid rgb(232, 239, 245);
 }
 
 .no-reports {
@@ -187,8 +188,11 @@
     padding: 10px;
 }
 tr{
-    border-bottom: 2px solid #d9dadc;
+    /* border-bottom: 2px solid #d9dadc; */
     padding: 10px;
+}
+tr:nth-child(odd){
+    background-color: rgb(239, 248, 255);
 }
 td{
     height:80px;

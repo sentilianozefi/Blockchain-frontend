@@ -199,23 +199,25 @@ export default function Admin() {
                 </div>
             }
             {admins !== null && replist === true &&
-            <div className='admin_reports'>
-                <div className='admin_reports_container'>
-                    {reports.length !== 0 ? reports.map((el) => <div className='admin-pg-report'>
-                        <div>
-                            <p>Author: {el.username}</p>
-                            <p>Date created: {el.creationdate}</p>
-                            <p>Canceled: {el.canceled.toString()}</p>
-                            {el.display === true ?
-                                <button className='admin-btn' value={el.id} onClick={() => hidereport(el)}>Hide report</button> :
-                                <button className='admin-btn' value={el.id} onClick={() => showreport(el)}>Show report</button>}
-                        </div>
-                        <div>
-                            <h6>{el.title}</h6>
-                            <textarea className='report-scrollable-2' value={el.report} /></div>
-                    </div>) : <div className='no-reports'><h1>This user has no reports!</h1></div>}
-                    <button className='edit-btns' id="admin-close-btn" onClick={() => setReplist(false)}>Close</button>
-                </div>
+                <div className='admin_reports'>
+                    <div className='admin_reports_container'>
+                        {reports.length !== 0 ? reports.map((el) => <div className='admin-pg-report'>
+                            <div>
+                                <p>Author: {el.username}</p>
+                                <p>Date created: {el.creationdate}</p>
+                                <p>Canceled: {el.canceled.toString()}</p>
+
+                            </div>
+                            <div>
+                                <h6>{el.title}</h6>
+                                <textarea className='report-scrollable-2' value={el.report} />
+                                {el.display === true ?
+                                    <button className='admin-btn' value={el.id} onClick={() => hidereport(el)}>Hide report</button> :
+                                    <button className='admin-btn' value={el.id} onClick={() => showreport(el)}>Show report</button>}
+                            </div>
+                        </div>) : <div className='no-reports'><h1>This user has no reports!</h1></div>}
+                        <button className='edit-btns' id="admin-close-btn" onClick={() => setReplist(false)}>Close</button>
+                    </div>
                 </div>
             }
         </div>

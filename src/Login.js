@@ -339,35 +339,31 @@ export default function Login() {
     )
   }
 
-  // const checktime = (id) => {
-  //   console.log(fetch("http://192.168.70.108:8080/checkReportEssence/" + id, {
-  //     method: 'GET',
-  //     headers: {
-  //       "Content-type": "application/json; charset=UTF-8"
-  //     }
-  //   }).then(response => {
-  //     if (!response.ok) {
-  //       Swal.fire({
-  //         icon: 'error',
-  //         title: 'Oops...',
-  //         text: 'Update time has passed!',
-  //       });
-  //     }
-  //     console.log(response.ok)
-  //     return response.ok;
-  //  }
-  //   ))
-  // }
+  const checktime = (el) => {
+    fetch("http://192.168.70.108:8080/checkReportEssence/" + el.id, {
+      method: 'GET',
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    }).then(response => {
+      if (!response.ok) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Update time has passed!',
+        });
+      }
+      else {
+        el.displayEdit = true;
+        handleClickOpen();
+        setreport2title(el.title);
+        setreport2(el.report);
+        fetchData();
+      }
+    }
+    )
+  }
 
-  // const checkStatus = (el) => {
-  //   if(checktime(el.id)){ 
-  //     el.displayEdit = true;  
-  //     handleClickOpen(); 
-  //     setreport2title(el.title); 
-  //     setreport2(el.report); 
-  //     fetchData(); 
-  //   }
-  // }
   const reportedit = (id) => {
     if (report2 === "" || report2title === "") {
       Swal.fire(
@@ -494,11 +490,12 @@ export default function Login() {
               {arr !== null && arr.map((el) => <div className="reports">{el.display === true && <li key={el.username} className="reportlist">
                 <div className="report-container">
                   {el.canceled === false && <Button
-                    onClick={() => { el.displayEdit = true; fetchData(); handleClickOpen(); setreport2title(el.title); setreport2(el.report) }}
+                    onClick={() => checktime(el)}
                     type="button"
                     className="edit-btn"
                     id="edit-btn"
                   >
+                    {/* { el.displayEdit = true; fetchData(); handleClickOpen(); setreport2title(el.title); setreport2(el.report) } */}
                     <AiFillEdit />
                   </Button>}
                   <code>{el.creationdate}</code><br></br><br></br>
@@ -524,7 +521,7 @@ export default function Login() {
                               className="form-input edit-title-input"
                               value={report2title}
                               onChange={e => setreport2title(e.target.value)}
-                              maxLength="200"
+                              maxLength="50"
                             >{el.title}</textarea>
                           </DialogTitle>
                           <DialogContent className="dialog-content">
