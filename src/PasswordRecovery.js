@@ -20,6 +20,7 @@ export default function Recoverpassword() {
           })
         }
         else {
+          setbtnstate(false)
           res.json()
           Swal.fire(
             'Please check your e-mail!',
@@ -43,7 +44,6 @@ export default function Recoverpassword() {
     }
     else{
       generateToken();
-      setbtnstate(false);
     }
   }
 
